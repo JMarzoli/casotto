@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,12 @@ public class Location implements ILocation{
 
     @Column
     private String desc;
-    private List<Umbrella> umbrellas;
-    private List<BeachChair> beachChairs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Umbrella> umbrellas;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<BeachChair> beachChairs;
 
     public Location(Long id, String desc) {
         this.id = id;

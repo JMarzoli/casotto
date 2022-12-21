@@ -1,14 +1,12 @@
 package it.unicam.cs.ids.casotto.controller;
 
-import it.unicam.cs.ids.casotto.model.Customer;
-import it.unicam.cs.ids.casotto.model.DiscountCode;
-import it.unicam.cs.ids.casotto.model.Location;
-import it.unicam.cs.ids.casotto.model.Reservation;
+import it.unicam.cs.ids.casotto.model.*;
 import it.unicam.cs.ids.casotto.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -33,8 +31,8 @@ public class ReservationManager {
     public void makeReservation(Customer customer) {
         this.customer = customer;
     }
-    public void createReservation(Long reservationId, LocalDate bookingDate, LocalDate reservationBeginDate, LocalDate reservationEndDate, Location locationReserved, double reservationPrice) {
-        reservationRepository.save(new Reservation(reservationId, customer, bookingDate, reservationBeginDate, reservationEndDate, locationReserved, reservationPrice));
+    public void createReservation(LocalDate bookingDate, LocalDate reservationBeginDate, LocalDate reservationEndDate, Location locationReserved, double reservationPrice) {
+        reservationRepository.save(new Reservation(customer, bookingDate, reservationBeginDate, reservationEndDate, locationReserved, reservationPrice));
     }
 
     /**
@@ -54,7 +52,14 @@ public class ReservationManager {
      */
     public double getPriceLocationById(Long locationId) {
         Optional<Location> loc = locationManager.findById(locationId);
-        return loc.get().;
+        double totalCost = 0;
+        if(loc.isPresent()) {
+            Collection<Umbrella> umbrellas = loc.get().getUmbrellas();
+            for (Umbrella u: umbrellas) {
+                totalCost += u.getPrice();
+            }
+        } else totalCost = -1;
+        return totalCost;
     }
 
     /**

@@ -27,6 +27,10 @@ public class BeachChair implements IBeachChair {
     @Column
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name = "LOCATION_ID")
+    private Location location;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.casotto;
 
 import it.unicam.cs.ids.casotto.controller.CustomerManager;
+import it.unicam.cs.ids.casotto.controller.LocationManager;
 import it.unicam.cs.ids.casotto.controller.ReservationManager;
 import it.unicam.cs.ids.casotto.model.Customer;
 import it.unicam.cs.ids.casotto.model.DiscountCode;
@@ -19,6 +20,7 @@ import java.util.Scanner;
 class UC_Prenota_Postazione {
     @Autowired
     ReservationManager reservationManager;
+    LocationManager locationManager;
     CustomerManager customerManager;
     @Test
     void test1(){
@@ -26,9 +28,9 @@ class UC_Prenota_Postazione {
         boolean repeat = true,loop=true;
         double totalPrice=0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        Scanner in = new Scanner(System.in);
         while(repeat) {
             System.out.println("Per favore inserisci la data per la prenotazione: ");
-            Scanner in = new Scanner(System.in);
             List<Location> choices = new ArrayList<>();
             LocalDate reservationDate = LocalDate.parse(in.nextLine(),formatter);
 
@@ -40,9 +42,9 @@ class UC_Prenota_Postazione {
                 }
                 System.out.println("Scegli una delle postazioni disponibili\n");
                 int choice = Integer.parseInt(in.nextLine());
-                System.out.println("Il prezzo della postazione "+choice+" è: "+ availableLocations.get(choice).getPrice()+"\n");
+                System.out.println("Il prezzo della postazione "+choice+" è: "+ locationManager.getTotalPrice(availableLocations.get(choice).getId())+"\n");
                 choices.add(availableLocations.get(choice));
-                totalPrice += availableLocations.get(choice).getPrice();
+                totalPrice += locationManager.getTotalPrice(availableLocations.get(choice).getId());
 //                while(loop){
 //                    System.out.println("Vuoi prenotare un'altra postazione? Y/n\n");
 //                    if(in.nextLine().equals("Y")) {
@@ -63,7 +65,7 @@ class UC_Prenota_Postazione {
 
                 System.out.println("Inizio procedura di pagamento...\n");
                 if(reservationManager.startPayment()) {
-                    reservationManager.createReservation(1L,LocalDate.now(), reservationDate,reservationDate,choices.get(0),totalPrice);
+                    reservationManager.createReservation(LocalDate.now(), reservationDate,reservationDate,choices.get(0),totalPrice);
                     System.out.println("Prenotazione confermata!\n");
                 }
                 return;

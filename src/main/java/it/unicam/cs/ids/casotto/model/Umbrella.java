@@ -22,4 +22,8 @@ public class Umbrella implements IUmbrella {
     private String material;
 
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "LOCATION_ID")
+    private Location location;
 }

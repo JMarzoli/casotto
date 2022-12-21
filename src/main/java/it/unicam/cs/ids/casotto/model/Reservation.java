@@ -40,8 +40,7 @@ public class Reservation implements IReservation {
     private double reservationPrice;
 
 
-    public Reservation(Long id, Customer customer, LocalDate bookingDate, LocalDate reservationBeginDate, LocalDate reservationEndDate, Location locationReserved, double reservationPrice) {
-        this.id = id;
+    public Reservation(Customer customer, LocalDate bookingDate, LocalDate reservationBeginDate, LocalDate reservationEndDate, Location locationReserved, double reservationPrice) {
         this.customer = customer;
         this.bookingDate = bookingDate;
         this.reservationBeginDate = reservationBeginDate;
