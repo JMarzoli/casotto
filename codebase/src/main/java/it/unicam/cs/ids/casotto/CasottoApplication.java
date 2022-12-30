@@ -1,16 +1,17 @@
 package it.unicam.cs.ids.casotto;
 
 import it.unicam.cs.ids.casotto.controller.*;
-import it.unicam.cs.ids.casotto.model.*;
-import it.unicam.cs.ids.casotto.repository.EquipmentRepository;
+import it.unicam.cs.ids.casotto.model.Order;
+import it.unicam.cs.ids.casotto.model.Product;
+import it.unicam.cs.ids.casotto.repository.OrderRepository;
+import it.unicam.cs.ids.casotto.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.Scanner;
+
 
 @SpringBootApplication
 public class CasottoApplication {
@@ -21,7 +22,7 @@ public class CasottoApplication {
 
 	@Bean
 	public CommandLineRunner demo(BeachManager beachManager, EquipmentManager equipmentManager
-			,UmbrellaManager umbrellaManager, BeachChairManager beachChairManager, CustomerManager customerManager, ActivityManager activityManager) {
+			, UmbrellaManager umbrellaManager, BeachChairManager beachChairManager, CustomerManager customerManager, ActivityManager activityManager, ProductRepository productRepository, OrderRepository orderRepository) {
 		return args -> {
 /*			GESTIONE SPIAGGIA
 			Beach newBeach = new Beach();
@@ -92,6 +93,25 @@ public class CasottoApplication {
 			Activity activity = new Activity();
 			activityManager.saveActivity(activity);
 			activityManager.addCustomerToActivity(customer.getId(), activity.getId());*/
+//			CREAZIONE ORDINE
+			BarController barController = new BarController(productRepository, orderRepository);
+			Product product = new Product("name", 10, "description", 10);
+			Product product1 = new Product("name1", 10, "description1", 10);
+			barController.addNewProduct(product);
+			barController.addNewProduct(product1);
+			List<Product> products = List.of(product, product1);
+			System.out.println("Questo è il tuo ordine: " + products);
+			barController.createNewOrder(products);
+			System.out.println("Questo è il suo totale" + products.stream().mapToDouble(product2 -> product1.getPrice()).sum());
+//			VISIONE DEGLI ORDINI NON COMPLETATI
+			WorkersController workersController = new WorkersController(orderRepository);
+			System.out.println("---------------------------------------");
+			List<Order> orders = workersController.getOrdersNonCompleted();
+			for (Order order: orders) {
+				System.out.println(order.getProducts());
+			}
+//			IMPOSTO ORDINE COMPLETATO
+			workersController.setOrderCompleted(orders.get(0).getId());
 		};
 	}
 }
