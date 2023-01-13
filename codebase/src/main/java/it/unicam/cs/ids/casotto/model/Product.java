@@ -57,6 +57,6 @@ public class Product implements IProduct {
 
     @Override
     public String toString() {
-        return "Nome del prodotto:" + name+ ", descrizione=" + description;
+        return "Numero: " + id + ", nome: " + name + ", prezzo: " + price + "€" + ", quantità disponibile: " + quantity;
     }
 }

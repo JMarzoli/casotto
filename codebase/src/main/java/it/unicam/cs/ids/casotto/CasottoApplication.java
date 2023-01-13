@@ -1,10 +1,8 @@
 package it.unicam.cs.ids.casotto;
 
 import it.unicam.cs.ids.casotto.controller.*;
-import it.unicam.cs.ids.casotto.model.Order;
-import it.unicam.cs.ids.casotto.model.Product;
-import it.unicam.cs.ids.casotto.repository.OrderRepository;
-import it.unicam.cs.ids.casotto.repository.ProductRepository;
+import it.unicam.cs.ids.casotto.model.*;
+import it.unicam.cs.ids.casotto.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +20,11 @@ public class CasottoApplication {
 
 	@Bean
 	public CommandLineRunner demo(BeachManager beachManager, EquipmentManager equipmentManager
-			, UmbrellaManager umbrellaManager, BeachChairManager beachChairManager, CustomerManager customerManager, ActivityManager activityManager, ProductRepository productRepository, OrderRepository orderRepository) {
+			, UmbrellaManager umbrellaManager, BeachChairManager beachChairManager
+			, CustomerManager customerManager, ActivityManager activityManager
+			, ProductRepository productRepository, OrderRepository orderRepository
+			, LocationRepository locationRepository, UmbrellaRepository umbrellaRepository
+			, BeachChairRepository beachChairRepository) {
 		return args -> {
 /*			GESTIONE SPIAGGIA
 			Beach newBeach = new Beach();
@@ -93,7 +95,7 @@ public class CasottoApplication {
 			Activity activity = new Activity();
 			activityManager.saveActivity(activity);
 			activityManager.addCustomerToActivity(customer.getId(), activity.getId());*/
-//			CREAZIONE ORDINE
+/*//			CREAZIONE ORDINE
 			BarController barController = new BarController(productRepository, orderRepository);
 			Product product = new Product("name", 10, "description", 10);
 			Product product1 = new Product("name1", 10, "description1", 10);
@@ -111,7 +113,28 @@ public class CasottoApplication {
 				System.out.println(order.getProducts());
 			}
 //			IMPOSTO ORDINE COMPLETATO
-			workersController.setOrderCompleted(orders.get(0).getId());
+			workersController.setOrderCompleted(orders.get(0).getId());*/
+//			CREO LOCATION CON DESCRIZIONE
+/*			LocationManager locationManager = new LocationManager(locationRepository);
+			Location location = locationManager.createLocation("Location");
+			UmbrellaManager umbrellaManager1 = new UmbrellaManager(umbrellaRepository);
+			Umbrella umbrella = new Umbrella();
+			umbrella.setLocation(location);
+			umbrellaManager1.saveUmbrella(umbrella);
+			locationManager.addUmbrellaToLocation(location.getId(), umbrella);
+			BeachChairManager beachChairManager1 = new BeachChairManager(beachChairRepository);
+			BeachChair beachChair = new BeachChair();
+			beachChair.setLocation(location);
+			beachChairManager1.saveBeachChair(beachChair);
+			locationManager.addBeachChairToLocation(location.getId(), beachChair);
+			System.out.println(locationManager.getAllLocations());*/
+//			VISUALIZZA ATTIVITA' IN PROGRAMMA
+/*			Customer customer1 = new Customer();
+			customerManager.saveCustomer(customer1);
+			Activity activity1 = new Activity();
+			activityManager.saveActivity(activity1);
+			activityManager.addCustomerToActivity(customer1.getId(), activity1.getId());
+			System.out.println(activityManager.getAllActivities());*/
 		};
 	}
 }

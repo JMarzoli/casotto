@@ -56,14 +56,15 @@ public class Activity implements IActivity {
 
     @Override
     public String toString() {
-        String toString =  "ID ATTIVITA' =" + id + ", INFORMAZIONI ='" + info + ", DATA INIZIO ATTIVITA' =" + activityBeginDate
-                + ", DATA FINE ATTIVITA' =" + activityEndDate +", NUMERO MASSIMO DI PERSONE =";
+        String toString =  "ID ATTIVITA' = " + id + ", INFORMAZIONI = " + info + ", DATA INIZIO ATTIVITA' = " + activityBeginDate
+                + ", DATA FINE ATTIVITA' = " + activityEndDate +", NUMERO MASSIMO DI PERSONE = ";
         final StringBuilder stringBuilder = new StringBuilder(toString);
         if (maxNumberOfPeople < 0) {
             stringBuilder.append("NESSUN LIMITE");
         } else {
             stringBuilder.append(maxNumberOfPeople);
         }
-        return stringBuilder.toString();
+        toString =  stringBuilder.toString();
+        return toString + " CLIENTI = " + customersInThisActivity;
     }
 }

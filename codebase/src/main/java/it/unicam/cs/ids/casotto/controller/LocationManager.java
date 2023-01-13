@@ -1,13 +1,11 @@
 package it.unicam.cs.ids.casotto.controller;
 
-import it.unicam.cs.ids.casotto.model.BeachChair;
-import it.unicam.cs.ids.casotto.model.Location;
-import it.unicam.cs.ids.casotto.model.Reservation;
-import it.unicam.cs.ids.casotto.model.Umbrella;
+import it.unicam.cs.ids.casotto.model.*;
 import it.unicam.cs.ids.casotto.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -19,9 +17,22 @@ public class LocationManager {
         this.locationRepository = locationRepository;
     }
 
-    public Location createLocation(Long id,String desc) {
-        return locationRepository.save(new Location(id,desc));
+    public Location createLocation(String desc) {
+        return locationRepository.save(new Location(desc));
     }
+
+    public void addUmbrellaToLocation(Long locationId, Umbrella umbrella) {
+        Location location = this.locationRepository.findById(locationId).orElseThrow(NullPointerException::new);
+        location.setUmbrellas(List.of(umbrella));
+        this.locationRepository.save(location);
+    }
+
+    public void addBeachChairToLocation(Long locationId, BeachChair beachChair) {
+        Location location = this.locationRepository.findById(locationId).orElseThrow(NullPointerException::new);
+        location.setBeachChairs(List.of(beachChair));
+        this.locationRepository.save(location);
+    }
+
     public List<Location> getAllLocations() {
         return locationRepository.findAll();
     }

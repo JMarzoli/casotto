@@ -43,4 +43,14 @@ public class BeachChair implements IBeachChair {
     public int hashCode() {
         return Objects.hash(id, material, length, width, price);
     }
+
+    @Override
+    public String toString() {
+        return "Sdraio{" +
+                "Materiale='" + material + '\'' +
+                ", Lunghezza=" + length +
+                ", Larghezza=" + width +
+                ", Prezzo=" + price +
+                '}';
+    }
 }

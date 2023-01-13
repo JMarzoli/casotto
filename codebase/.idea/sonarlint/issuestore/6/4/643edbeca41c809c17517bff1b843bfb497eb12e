@@ -1,10 +1,13 @@
 
-Q	java:S125"<This block of commented-out lines of code should be removed.(…’©µ
-V	java:S125,"<This block of commented-out lines of code should be removed.(¢°Æ’ùÿÿÿÿ
-V	java:S125<"<This block of commented-out lines of code should be removed.(–“ìòÿÿÿÿÿ
-Q	java:S125O"<This block of commented-out lines of code should be removed.(ñ•ãŠ
-V	java:S125["<This block of commented-out lines of code should be removed.(òñ…èıÿÿÿÿ
-S	java:S106g"9Replace this use of System.out or System.err by a logger.(¬±Ãøÿÿÿÿÿ
-S	java:S106i"9Replace this use of System.out or System.err by a logger.(«øÛĞùÿÿÿÿ
-S	java:S106l"9Replace this use of System.out or System.err by a logger.(™çšùÿÿÿÿ
-N	java:S106o"9Replace this use of System.out or System.err by a logger.(¤û¹õ
+Q	java:S125"<This block of commented-out lines of code should be removed.(…’©µ
+V	java:S125."<This block of commented-out lines of code should be removed.(¢°Æ’ùÿÿÿÿ
+V	java:S125>"<This block of commented-out lines of code should be removed.(–“ìòÿÿÿÿÿ
+Q	java:S125Q"<This block of commented-out lines of code should be removed.(ñ•ãŠ
+V	java:S125]"<This block of commented-out lines of code should be removed.(òñ…èıÿÿÿÿ
+Q	java:S125c"<This block of commented-out lines of code should be removed.(«éß×
+Q	java:S125v"<This block of commented-out lines of code should be removed.(æ§Áó
+^	java:S125„"<This block of commented-out lines of code should be removed.(Õ÷¾œùÿÿÿÿ8İæ“áÚ0
+]
+java:S1128";Remove this unused import 'it.unicam.cs.ids.casotto.model'.(éêÊ´şÿÿÿÿ8İæ“áÚ0
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8İæ“áÚ0

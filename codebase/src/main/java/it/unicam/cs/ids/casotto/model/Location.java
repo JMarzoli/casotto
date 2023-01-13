@@ -28,8 +28,16 @@ public class Location implements ILocation{
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<BeachChair> beachChairs;
 
-    public Location(Long id, String desc) {
-        this.id = id;
+    public Location(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "Descrizione='" + desc + '\'' +
+                ", Ombrelli=" + umbrellas +
+                ", Sdraio=" + beachChairs +
+                '}';
     }
 }

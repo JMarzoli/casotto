@@ -47,4 +47,12 @@ public class Customer implements User {
         return Objects.hash(id, firstName, lastName, email);
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "Nome='" + firstName + '\'' +
+                ", Cognome='" + lastName + '\'' +
+                ", Email='" + email + '\'' +
+                '}';
+    }
 }

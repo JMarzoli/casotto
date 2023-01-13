@@ -7,6 +7,7 @@ import it.unicam.cs.ids.casotto.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,10 @@ public class ActivityManager {
 
     public void saveActivity(Activity activity) {
         this.activityRepository.save(activity);
+    }
+
+    public List<Activity> getAllActivities() {
+        return this.activityRepository.findAll();
     }
 
     public void addCustomerToActivity(long customerId, long activityId) {

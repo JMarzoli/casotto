@@ -26,4 +26,13 @@ public class Umbrella implements IUmbrella {
     @ManyToOne
     @JoinColumn(name = "LOCATION_ID")
     private Location location;
+
+    @Override
+    public String toString() {
+        return "Ombrello{" +
+                "Diametro=" + diameter +
+                ", Materiale='" + material + '\'' +
+                ", Prezzo=" + price +
+                '}';
+    }
 }
