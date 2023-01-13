@@ -135,6 +135,15 @@ public class CasottoApplication {
 			activityManager.saveActivity(activity1);
 			activityManager.addCustomerToActivity(customer1.getId(), activity1.getId());
 			System.out.println(activityManager.getAllActivities());*/
+//			VISUALIZZA STORICO ORDINI
+/*			BarController barController1 = new BarController(productRepository, orderRepository);
+			Product product1 = productRepository.findById(1L).orElse(null);
+			Product product2 = productRepository.findById(2L).orElse(null);
+			barController1.addNewProduct(product1);
+			barController1.addNewProduct(product1);
+			List<Product> products = List.of(product1, product2);
+			barController1.createNewOrder(products);
+			System.out.println(barController1.getAllOrders());*/
 		};
 	}
 }

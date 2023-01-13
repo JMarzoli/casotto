@@ -27,11 +27,15 @@ v
 Fsrc/main/java/it/unicam/cs/ids/casotto/controller/LocationManager.java,e\d\edb6dbdb56e510f69b867768098ffa7de6dc4509
 j
 :src/main/java/it/unicam/cs/ids/casotto/model/Location.java,8\1\8173dde1ad65a24b33ca06d8eb7afe62c3a13029
-n
->src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java,6\4\643edbeca41c809c17517bff1b843bfb497eb12e
 v
 Fsrc/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java,c\f\cfe3a94d4e37be309d1a32d4051ca6c61e06ece9
 j
 :src/main/java/it/unicam/cs/ids/casotto/model/Activity.java,c\6\c6030847c5b38278b5229cdfd63ccde241a378d4
 j
 :src/main/java/it/unicam/cs/ids/casotto/model/Customer.java,8\1\810e78cf6fca6bb7a2a6da4f0e39cd13bdc035d3
+g
+7src/main/java/it/unicam/cs/ids/casotto/model/Order.java,a\7\a7bbdf0d6b155113689ffedad3c8cea365048362
+t
+Dsrc/main/java/it/unicam/cs/ids/casotto/controller/BarController.java,8\1\816cdde5a0846efba4c3a2ae084fc74792e97511
+n
+>src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java,6\4\643edbeca41c809c17517bff1b843bfb497eb12e

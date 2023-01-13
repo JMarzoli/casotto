@@ -44,4 +44,13 @@ public class Order  {
     public int hashCode() {
         return Objects.hash(id, price);
     }
+
+    @Override
+    public String toString() {
+        return "Ordine{" +
+                "Prezzo=" + price +
+                ", Completato=" + hasBeenCompleted +
+                ", Prodotti=" + products +
+                '}';
+    }
 }

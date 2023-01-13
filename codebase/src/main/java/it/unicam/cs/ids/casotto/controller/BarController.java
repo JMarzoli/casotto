@@ -29,9 +29,18 @@ public class BarController {
         return this.productRepository.findAll();
     }
 
+    public List<Order> getAllOrders(){
+        return this.orderRepository.findAll();
+    }
+
     public void createNewOrder(List<Product> products) {
         Order order = new Order();
         order.setProducts(products);
+        double price = 0;
+        for (Product product : products) {
+            price += product.getPrice();
+        }
+        order.setPrice(price);
         this.orderRepository.save(order);
     }
     public void setOrderAsCompleted(Long orderId) {
