@@ -39,4 +39,14 @@ public class ActivityManager {
         activity1.getCustomersInThisActivity().add(customer1);
         this.activityRepository.save(activity1);
     }
+
+    public void deleteActivity(Long id) {
+        this.activityRepository.deleteById(id);
+    }
+    public void updateActivity(Activity updatedActivity) {
+        //calling save() on an object with predefined id will update the corresponding
+        // database record rather than insert a new one
+        if(this.activityRepository.findById(updatedActivity.getId()).isPresent())
+        this.activityRepository.save(updatedActivity);
+    }
 }

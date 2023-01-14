@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -146,25 +147,74 @@ public class CasottoApplication {
 			barController1.createNewOrder(products);
 			System.out.println(barController1.getAllOrders());*/
 			//MODIFICA ATTIVITA'
-//			Manager manager1 = new Manager();
-//			managerManager.saveCustomer(manager1);
-//			Activity activity1 = new Activity();
-//			activityManager.saveActivity(activity1);
-//			activityManager.getAllActivities();
 //			List<Activity> allActivities = activityManager.getAllActivities();
-//			if(allActivities.isEmpty()) {System.out.println("Non ci sono attività in programma!");}
-//			else{
-//				System.out.println("Ecco tutte le attività in programma: \n");
-//				for (int i = 0; i < allActivities.size(); i++) {
-//					System.out.println(i + ": " + allActivities.get(i).getInfo());
+//			System.out.println("Ecco tutte le attività in programma: \n");
+//			for (int i = 0; i < allActivities.size(); i++) {
+//				System.out.println(i + ": " + allActivities.get(i).getInfo());
+//			}
+//			System.out.println("Scegli cosa vuoi fare: \n");
+//			System.out.println("1: Aggiungi una nuova attività.\n");
+//			System.out.println("2: Elimina un'attività.\n");
+//			System.out.println("3: Modifica un'attività.\n");
+//			Scanner in = new Scanner(System.in);
+//			String a = in.nextLine();
+//
+//			switch (Integer.parseInt(a)){
+//				case 1: {
+//					System.out.println("Inserisci le info dell'attività: ");
+//					String info = in.nextLine();
+//					System.out.println("Inserisci la data di inizio dell'attività: ");
+//					String dataInizio = in.nextLine();
+//					System.out.println("Inserisci la data di fine dell'attività: ");
+//					String dataFine = in.nextLine();
+//					System.out.println("Inserisci il numero di partecipanti massimo dell'attività: ");
+//					String numPartecipanti = in.nextLine();
+//
 //				}
-//				System.out.println("Seleziona l'attività da modificare: \n");
-//				Scanner in = new Scanner(System.in);
-//				String a = in.nextLine();
-//				System.out.println("Hai selezionato l'attività numero "+a+"\n");
-//				Activity activity = allActivities.get(Integer.parseInt(a));
-//				System.out.println("Inserisci le modifiche da effettuare: ");
-//				String modifiche = in.nextLine();
+//				case 2: {
+//					System.out.println("Seleziona l'attività da eliminare: \n");
+//					a = in.nextLine();
+//					System.out.println("Hai selezionato l'attività numero "+a+"\n");
+//					activityManager.deleteActivity(allActivities.get(Integer.parseInt(a)).getId());
+//				}
+//				case 3: {
+//					System.out.println("Seleziona l'attività da modificare: \n");
+//					a = in.nextLine();
+//					System.out.println("Hai selezionato l'attività numero "+a+"\n");
+//					Activity activity = allActivities.get(Integer.parseInt(a));
+//					System.out.println("Scegli cosa modificare: ");
+//					System.out.println("1: Modifica le info.\n");
+//					System.out.println("2: Modifica la data d'inizio.\n");
+//					System.out.println("3: Modifica la data di fine.\n");
+//					System.out.println("4: Modifica il numero massimo di partecipanti.\n");
+//					a = in.nextLine();
+//					do{
+//						switch (Integer.parseInt(a)) {
+//							case 1:{
+//								System.out.println("Inserisci la nuova info: ");
+//								String info = in.nextLine();
+//								activity.setInfo(info);
+//							}
+//							case 2:{
+//								System.out.println("Inserisci la nuova data d'inizio: ");
+//								String date = in.nextLine();
+//								activity.setActivityBeginDate(LocalDate.parse(date));
+//							}
+//							case 3:{
+//								System.out.println("Inserisci la nuova data di fine: ");
+//								String date = in.nextLine();
+//								activity.setActivityBeginDate(LocalDate.parse(date));
+//							}case 4:{
+//								System.out.println("Inserisci il nuovo numero di iscrizioni: ");
+//								String date = in.nextLine();
+//								activity.setMaxNumberOfPeople(Integer.parseInt(date));
+//							}
+//						};
+//						System.out.println("Premi 0 se vuoi effettuare un'altra modifica: ");
+//						a = in.nextLine();
+//					} while(a.equals("0"));
+//					activityManager.updateActivity(activity);
+//				}
 //			}
 			//NOTIFICA TERMINALI PRESENZA ORDINI NON COMPLETATI
 //			BarController barController1 = new BarController(productRepository, orderRepository);
