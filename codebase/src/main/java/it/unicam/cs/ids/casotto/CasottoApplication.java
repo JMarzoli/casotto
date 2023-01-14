@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @SpringBootApplication
@@ -144,6 +145,49 @@ public class CasottoApplication {
 			List<Product> products = List.of(product1, product2);
 			barController1.createNewOrder(products);
 			System.out.println(barController1.getAllOrders());*/
+			//MODIFICA ATTIVITA'
+//			Manager manager1 = new Manager();
+//			managerManager.saveCustomer(manager1);
+//			Activity activity1 = new Activity();
+//			activityManager.saveActivity(activity1);
+//			activityManager.getAllActivities();
+//			List<Activity> allActivities = activityManager.getAllActivities();
+//			if(allActivities.isEmpty()) {System.out.println("Non ci sono attività in programma!");}
+//			else{
+//				System.out.println("Ecco tutte le attività in programma: \n");
+//				for (int i = 0; i < allActivities.size(); i++) {
+//					System.out.println(i + ": " + allActivities.get(i).getInfo());
+//				}
+//				System.out.println("Seleziona l'attività da modificare: \n");
+//				Scanner in = new Scanner(System.in);
+//				String a = in.nextLine();
+//				System.out.println("Hai selezionato l'attività numero "+a+"\n");
+//				Activity activity = allActivities.get(Integer.parseInt(a));
+//				System.out.println("Inserisci le modifiche da effettuare: ");
+//				String modifiche = in.nextLine();
+//			}
+			//NOTIFICA TERMINALI PRESENZA ORDINI NON COMPLETATI
+//			BarController barController1 = new BarController(productRepository, orderRepository);
+//			List<Order> orders = barController1.getAllOrders().stream().filter(o -> !o.isHasBeenCompleted()).toList();
+//			if(!orders.isEmpty()){
+//				System.out.println("Ci sono ancora ordini da completare!");
+//			}
+			//STAMPA SCONTRINO
+//			BarController barController1 = new BarController(productRepository, orderRepository);
+//			Product product1 = productRepository.findById(1L).orElse(null);
+//			Product product2 = productRepository.findById(2L).orElse(null);
+//			barController1.addNewProduct(product1);
+//			barController1.addNewProduct(product1);
+//			List<Product> products = List.of(product1, product2);
+//			barController1.createNewOrder(products);
+//			System.out.println("SCONTRINO \n"+"Prodotti acquistati:\n");
+//			double tot = 0;
+//			for (Product product: products) {
+//				System.out.println(product.getName() + " "+ product.getPrice());
+//				tot += product.getPrice();
+//			}
+//			System.out.println("\nTotale pagato: "+ tot);
+
 		};
 	}
 }
