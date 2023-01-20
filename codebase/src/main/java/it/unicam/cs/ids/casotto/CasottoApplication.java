@@ -26,7 +26,7 @@ public class CasottoApplication {
 			, CustomerManager customerManager, ActivityManager activityManager
 			, ProductRepository productRepository, OrderRepository orderRepository
 			, LocationRepository locationRepository, UmbrellaRepository umbrellaRepository
-			, BeachChairRepository beachChairRepository) {
+			, BeachChairRepository beachChairRepository, MailSender2 mailSender2) {
 		return args -> {
 /*			GESTIONE SPIAGGIA
 			Beach newBeach = new Beach();
@@ -237,7 +237,18 @@ public class CasottoApplication {
 //				tot += product.getPrice();
 //			}
 //			System.out.println("\nTotale pagato: "+ tot);
-
+//			INVIA NOTIFICA CLIENTI
+			/*mailSender2.sendSimpleMessage("email", "oggetto", "testo");*/
+//			INVIA REMINDER ATTIVITA' GIORNARLIERA
+/*			activityManager.getAllActivities().forEach(activity -> {
+				if (activity.getActivityBeginDate().isEqual(LocalDate.now())) {
+					activity.getCustomersInThisActivity().forEach(customer -> {
+						mailSender2.sendSimpleMessage(customer.getEmail(), "Inizio attività", activity.getInfo());
+					});
+				}
+			});*/
+//			VISUALIZZA CATOLOGO SERVIZI
+/*			System.out.println("SERVIZI DISPONIBILI IN QUESTO STABILIMENTO" + List.of("SERVIZIO BAR", "SERVIZIO BALNEARE CON PRENOTAZIONE DI OMBRELLONI E LETTINI", "ATTIVITA' ALL'APERTO"));*/
 		};
 	}
 }

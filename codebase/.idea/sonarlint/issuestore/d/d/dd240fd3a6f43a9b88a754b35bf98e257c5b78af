@@ -1,0 +1,10 @@
+
+]	java:S125	"<This block of commented-out lines of code should be removed.(áß¯ãùÿÿÿÿ8øŞØöÜ0
+_
+java:S1128"DRemove this unused import 'it.unicam.cs.ids.casotto.model.Customer'.(¹ëò‡ûÿÿÿÿ
+`
+java:S1128"CRemove this unused import 'it.unicam.cs.ids.casotto.model.Manager'.(–“¹—8ùŞØöÜ0
+o
+java:S1128"RRemove this unused import 'org.springframework.data.jpa.repository.JpaRepository'.(À™‡“8ùŞØöÜ0
+h
+java:S1128"FRemove this unused import 'org.springframework.stereotype.Repository'.(¦ıÍıüÿÿÿÿ8ùŞØöÜ0
