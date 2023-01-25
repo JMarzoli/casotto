@@ -41,3 +41,15 @@ r
 Bsrc/main/java/it/unicam/cs/ids/casotto/controller/MailSender2.java,c\8\c843a72ae4bc344a90e413c9f25f8dbe191a8b38
 j
 :src/main/java/it/unicam/cs/ids/casotto/model/Customer.java,8\1\810e78cf6fca6bb7a2a6da4f0e39cd13bdc035d3
+8
+demo.txt,c\6\c6d0d7b9e0bc514f5223d7c3b26d3a55234a79df
+j
+:.idea/dataSources/cff8ed7d-594c-4aeb-b556-3d94d11eda85.xml,7\c\7c5395074a1034704d51af95adbf050ee43b585f
+j
+:src/main/java/it/unicam/cs/ids/casotto/model/Activity.java,c\6\c6030847c5b38278b5229cdfd63ccde241a378d4
+v
+Fsrc/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java,c\f\cfe3a94d4e37be309d1a32d4051ca6c61e06ece9
+n
+>src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java,6\4\643edbeca41c809c17517bff1b843bfb497eb12e
+m
+=src/main/java/it/unicam/cs/ids/casotto/model/IBeachChair.java,9\e\9ea2ebe4f28840e1503e3e897e98dfc3848adf42

@@ -4,29 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00531cbf-b36e-4ebc-b547-f5bed573e893" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../casotto.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../casotto.vpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cff8ed7d-594c-4aeb-b556-3d94d11eda85.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cff8ed7d-594c-4aeb-b556-3d94d11eda85.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9ad9a866798e20d479cbb7061ebe5423174773fd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c6030847c5b38278b5229cdfd63ccde241a378d4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c6835eee84a20fbea27eeb4dbbf1d25d9c0afd06" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/f/cfe3a94d4e37be309d1a32d4051ca6c61e06ece9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e428cf9d909b6e297195aa6cb680df79575f4645" beforeDir="false" />
+    <list default="true" id="00531cbf-b36e-4ebc-b547-f5bed573e893" name="Changes" comment="Migliorie del codice">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/model/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unicam/cs/ids/casotto/model/Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/it/unicam/cs/ids/casotto/CasottoApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/it/unicam/cs/ids/casotto/UC_Prenota_Postazione.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/it/unicam/cs/ids/casotto/UcClientePresenteInStrutturaAcquistaProdottiTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/casotto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/casotto.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
     "last_opened_file_path": "C:/Users/leona/Documents/Progetti/casotto/codebase",
@@ -76,10 +58,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "37408f5f19ab0f1fb5ee4d2a1e98325f",
     "vue.rearranger.settings.migration": "true"
   },
@@ -155,8 +137,18 @@
       <workItem from="1674074191272" duration="994000" />
       <workItem from="1674211489226" duration="3735000" />
       <workItem from="1674220944523" duration="266000" />
-      <workItem from="1674663929239" duration="4746000" />
+      <workItem from="1674663929239" duration="5182000" />
+      <workItem from="1674669245881" duration="120000" />
+      <workItem from="1674669377475" duration="64000" />
     </task>
+    <task id="LOCAL-00001" summary="Migliorie del codice">
+      <created>1674668734437</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674668734437</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,5 +164,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Migliorie del codice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migliorie del codice" />
   </component>
 </project>
