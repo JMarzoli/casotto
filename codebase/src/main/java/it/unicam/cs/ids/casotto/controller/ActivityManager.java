@@ -6,9 +6,7 @@ import it.unicam.cs.ids.casotto.repository.ActivityRepository;
 import it.unicam.cs.ids.casotto.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ActivityManager {
@@ -31,22 +29,21 @@ public class ActivityManager {
         return this.activityRepository.findAll();
     }
 
-    public void addCustomerToActivity(long customerId, long activityId) {
-        Optional<Customer> customer = this.customerRepository.findById(customerId);
-        Customer customer1 = customer.orElse(null);
-        Optional<Activity> activity = this.activityRepository.findById(activityId);
-        Activity activity1 = activity.orElse(null);
-        activity1.getCustomersInThisActivity().add(customer1);
-        this.activityRepository.save(activity1);
+    public boolean addCustomerToActivity(long customerId, long activityId) {
+        Customer customer = this.customerRepository.findById(customerId).orElse(null);
+        Activity activity = this.activityRepository.findById(activityId).orElse(null);
+        if ((customer != null && activity != null) && (activity.getCurrentNumberOfPeople() < activity.getMaxNumberOfPeople() || activity.getMaxNumberOfPeople() < 0)) {
+            activity.getCustomersInThisActivity().add(customer);
+            activity.setCurrentNumberOfPeople(activity.getCurrentNumberOfPeople() + 1);
+            this.activityRepository.save(activity);
+            return true;
+        }
+        return false;
     }
 
-    public void deleteActivity(Long id) {
-        this.activityRepository.deleteById(id);
-    }
     public void updateActivity(Activity updatedActivity) {
-        //calling save() on an object with predefined id will update the corresponding
-        // database record rather than insert a new one
-        if(this.activityRepository.findById(updatedActivity.getId()).isPresent())
-        this.activityRepository.save(updatedActivity);
+        if (this.activityRepository.findById(updatedActivity.getId()).isPresent()) {
+            this.activityRepository.save(updatedActivity);
+        }
     }
 }

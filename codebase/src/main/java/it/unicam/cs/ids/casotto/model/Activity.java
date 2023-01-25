@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table
@@ -30,6 +28,9 @@ public class Activity implements IActivity {
 
     @Column
     private LocalDate activityEndDate;
+
+    @Column
+    private int currentNumberOfPeople;
 
     @Column
     private int maxNumberOfPeople;
@@ -57,7 +58,7 @@ public class Activity implements IActivity {
     @Override
     public String toString() {
         String toString =  "ID ATTIVITA' = " + id + ", INFORMAZIONI = " + info + ", DATA INIZIO ATTIVITA' = " + activityBeginDate
-                + ", DATA FINE ATTIVITA' = " + activityEndDate +", NUMERO MASSIMO DI PERSONE = ";
+                + ", DATA FINE ATTIVITA' = " + activityEndDate + " CLIENTI PRESENTI AL MOMENTO = " + currentNumberOfPeople + ", NUMERO MASSIMO DI PERSONE = ";
         final StringBuilder stringBuilder = new StringBuilder(toString);
         if (maxNumberOfPeople < 0) {
             stringBuilder.append("NESSUN LIMITE");
@@ -65,6 +66,6 @@ public class Activity implements IActivity {
             stringBuilder.append(maxNumberOfPeople);
         }
         toString =  stringBuilder.toString();
-        return toString + " CLIENTI = " + customersInThisActivity;
+        return toString + ", CLIENTI = " + customersInThisActivity;
     }
 }

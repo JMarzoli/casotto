@@ -1,20 +1,0 @@
-
-Q	java:S125 "<This block of commented-out lines of code should be removed.(…’©µ
-V	java:S1250"<This block of commented-out lines of code should be removed.(¢°Æ’ùÿÿÿÿ
-V	java:S125@"<This block of commented-out lines of code should be removed.(–“ìòÿÿÿÿÿ
-Q	java:S125S"<This block of commented-out lines of code should be removed.(ñ•ãŠ
-V	java:S125_"<This block of commented-out lines of code should be removed.(òñ…èıÿÿÿÿ
-Q	java:S125e"<This block of commented-out lines of code should be removed.(«éß×
-Q	java:S125x"<This block of commented-out lines of code should be removed.(æ§Áó
-W	java:S125†"<This block of commented-out lines of code should be removed.(Õ÷¾œùÿÿÿÿ
-W	java:S125"<This block of commented-out lines of code should be removed.(€ç¦ıøÿÿÿÿ
-R	java:S125–"<This block of commented-out lines of code should be removed.(Ï·»µ
-^	java:S125û"<This block of commented-out lines of code should be removed.(ÖÒ„Øÿÿÿÿÿ8‘·ëúÜ0
-V
-java:S1128";Remove this unused import 'it.unicam.cs.ids.casotto.model'.(éêÊ´şÿÿÿÿ
-R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8×Ìû÷Ü0
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8‘·ëúÜ0
-S
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ

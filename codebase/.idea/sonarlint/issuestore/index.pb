@@ -1,18 +1,12 @@
 
-s
-Csrc/test/java/it/unicam/cs/ids/casotto/CasottoApplicationTests.java,c\6\c6835eee84a20fbea27eeb4dbbf1d25d9c0afd06
 <
 codebase.iml,f\8\f88d5f6f321a401ff784795c6e001419975edfd8
 i
 9src/main/java/it/unicam/cs/ids/casotto/model/Product.java,8\0\800d84cc9abe999c13e83d731132f20e9109313a
-Œ
-\src/test/java/it/unicam/cs/ids/casotto/UcClientePresenteInStrutturaAcquistaProdottiTest.java,e\4\e428cf9d909b6e297195aa6cb680df79575f4645
 h
 8src/main/java/it/unicam/cs/ids/casotto/model/Sector.java,d\b\db7996ee38d4d0a78af59fe349fc9db3c6f15e25
 k
 ;src/main/java/it/unicam/cs/ids/casotto/model/Structure.java,f\9\f9fdc31b6a312014bbe723392198401220ba447c
-q
-Asrc/test/java/it/unicam/cs/ids/casotto/UC_Prenota_Postazione.java,9\a\9ad9a866798e20d479cbb7061ebe5423174773fd
 v
 Fsrc/main/java/it/unicam/cs/ids/casotto/controller/UmbrellaManager.java,2\b\2bf8d7792065497a76ba8c728942c4fff02da2b4
 y
@@ -25,8 +19,6 @@ v
 Fsrc/main/java/it/unicam/cs/ids/casotto/controller/LocationManager.java,e\d\edb6dbdb56e510f69b867768098ffa7de6dc4509
 j
 :src/main/java/it/unicam/cs/ids/casotto/model/Location.java,8\1\8173dde1ad65a24b33ca06d8eb7afe62c3a13029
-v
-Fsrc/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java,c\f\cfe3a94d4e37be309d1a32d4051ca6c61e06ece9
 g
 7src/main/java/it/unicam/cs/ids/casotto/model/Order.java,a\7\a7bbdf0d6b155113689ffedad3c8cea365048362
 t
@@ -48,8 +40,4 @@ Fsrc/main/java/it/unicam/cs/ids/casotto/repository/OrderRepository.java,1\2\122
 r
 Bsrc/main/java/it/unicam/cs/ids/casotto/controller/MailSender2.java,c\8\c843a72ae4bc344a90e413c9f25f8dbe191a8b38
 j
-:src/main/java/it/unicam/cs/ids/casotto/model/Activity.java,c\6\c6030847c5b38278b5229cdfd63ccde241a378d4
-j
 :src/main/java/it/unicam/cs/ids/casotto/model/Customer.java,8\1\810e78cf6fca6bb7a2a6da4f0e39cd13bdc035d3
-n
->src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java,6\4\643edbeca41c809c17517bff1b843bfb497eb12e
