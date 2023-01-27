@@ -21,6 +21,9 @@ public class CustomerManager {
         this.customerRepository.save(customer);
     }
 
+    public Customer findById(Long id) {
+        return customerRepository.findById(id).orElse(null);
+    }
     public void makeReservation(Long id, LocalDate startDate, LocalDate endDate){
         reservationManager.makeReservation(customerRepository.findById(id).orElse(null), startDate, endDate);
     }

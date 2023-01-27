@@ -61,4 +61,8 @@ public class LocationManager {
         Optional<Location> loc = locationRepository.findById(locationId);
         loc.ifPresent(location -> location.getBeachChairs().forEach(beachChair -> beachChair.setPrice(newPrice)));
     }
+
+    public Location findByQrCode(String qrcode) {
+        return null;
+    }
 }

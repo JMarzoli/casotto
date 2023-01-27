@@ -1,12 +1,7 @@
 package it.unicam.cs.ids.casotto;
 
-import it.unicam.cs.ids.casotto.controller.ActivityManager;
-import it.unicam.cs.ids.casotto.controller.CustomerManager;
-import it.unicam.cs.ids.casotto.controller.LocationManager;
-import it.unicam.cs.ids.casotto.controller.ReservationManager;
-import it.unicam.cs.ids.casotto.model.Activity;
-import it.unicam.cs.ids.casotto.model.DiscountCode;
-import it.unicam.cs.ids.casotto.model.Location;
+import it.unicam.cs.ids.casotto.controller.*;
+import it.unicam.cs.ids.casotto.model.*;
 import it.unicam.cs.ids.casotto.repository.ActivityRepository;
 import it.unicam.cs.ids.casotto.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -16,10 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 @SpringBootApplication
 public class CasottoApplication {
@@ -27,6 +19,7 @@ public class CasottoApplication {
 	private LocationManager locationManager;
 	private CustomerManager customerManager;
 	private ActivityManager activityManager;
+	private BarController barController;
 	private final Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
 
@@ -204,6 +197,81 @@ public class CasottoApplication {
 				} while(scelta.equals("1"));
 				activityManager.updateActivity(activity);
 			}
+		}
+	}
+/*
+viualizzo
+scelgo
+ancora?
+ecco totale
+inquadra pls
+inquadro
+controlla con postazioni
+pago o inseirsci ancora
+creo ordine
+invio
+ */
+	public void ssdAcquistaProdotti() throws InterruptedException {
+		System.out.println("Benvenuto al servizio Bar della struttura!");
+		System.out.println("Seleziona il prodotto che vuoi acquistare: \n");
+		List<Product> products = barController.getProducts();
+		List<Product> productsInOrder = new LinkedList<>();
+		int n = 0;
+		boolean loop =true;
+		for (n = 0; n < products.size(); n++) {
+			System.out.println(n +") " + products.get(n).getName());
+		}
+		while(loop){
+			System.out.println("\n Seleziona il prodotto che vuoi acquistare: ");
+			int scelta = scanner.nextInt();
+			productsInOrder.add(products.get(scelta));
+			System.out.println(products.get(scelta).getName() + " è stato aggiunto al carrello.");
+			System.out.println("Vuoi aggiungere altri prodotti? (Y/n)");
+			if(!scanner.nextLine().equalsIgnoreCase("y")){
+				loop=false;
+			}
+		}
+		System.out.println("Ecco il tuo carrello: ");
+		productsInOrder.forEach(System.out::println);
+		double totale = productsInOrder.stream().mapToDouble(Product::getPrice).sum();
+		System.out.println("\nQuesto il tuo totale: " +totale);
+		System.out.println("Inquadra il QrCode associato alla tua postazione: ");
+		String qrcode = scanner.nextLine();
+		Location location = locationManager.findByQrCode(qrcode);
+		//Simulo la presenza di una postazione associata a quel QrCode. Altrimenti sarebbe location!=null.
+		if(location == null) {
+			System.out.println("Inizio procedura di pagamento...\n");
+			ssdElaboraPagamento(totale);
+			barController.createNewOrder(productsInOrder);
+		} else {
+			System.out.println("La postazione associata al QrCode inquadrato non risulta presente nel sistema...");
+		}
+
+	}
+	public void ssdRiceveOrdine(){
+
+	}
+
+	/**
+	 * This method represent th Use Case: Prende in carico ordine, where the worker wants to take charge of an order.
+	 */
+	public void ssdPrendeInCaricoOrdine(){
+		System.out.println("Ecco la lista degli ordini ancora da soddisfare: ");
+		List<Order> orders = barController.getAllOrders();
+		int scelta = 0;
+		for(scelta = 0; scelta < orders.size(); scelta++){
+			System.out.println(scelta + ") " + orders.get(scelta));
+		}
+		System.out.println("Scegli l'ordine da soddisfare: ");
+		int x = scanner.nextInt();
+		barController.setOrderAsCompleted(orders.get(x).getId());
+		System.out.println("Ordine segnato come completato correttamente!");
+		//Todo: Manca il metodo stampa scontrino.
+	}
+	public void UC_NotificaTerminaliPresenzaOrdini(){
+		List<Order> orders = barController.getAllOrders();
+		if (!orders.isEmpty()){
+			System.out.println("Ci sono ancora ordini da soddisfare!");
 		}
 	}
 }
