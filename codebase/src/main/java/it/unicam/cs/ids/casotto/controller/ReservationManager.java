@@ -20,7 +20,7 @@ public class ReservationManager {
     private final ReservationRepository reservationRepository;
     private final LocationManager locationManager;
     private Customer customer;
-
+    private LocalDate startDate, endDate, reservationDate;
 
     @Autowired
     public ReservationManager(ReservationRepository reservationRepository, LocationManager locationManager) {
@@ -28,11 +28,14 @@ public class ReservationManager {
         this.locationManager = locationManager;
     }
 
-    public void makeReservation(Customer customer) {
+    public void makeReservation(Customer customer,LocalDate startDate, LocalDate endDate) {
         this.customer = customer;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.reservationDate = LocalDate.now();
     }
-    public void createReservation(LocalDate bookingDate, LocalDate reservationBeginDate, LocalDate reservationEndDate, Location locationReserved, double reservationPrice) {
-        reservationRepository.save(new Reservation(customer, bookingDate, reservationBeginDate, reservationEndDate, locationReserved, reservationPrice));
+    public void createReservation(Location locationReserved, double reservationPrice) {
+        reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, locationReserved, reservationPrice));
     }
 
     /**

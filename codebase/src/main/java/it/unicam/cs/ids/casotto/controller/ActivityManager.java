@@ -46,4 +46,8 @@ public class ActivityManager {
             this.activityRepository.save(updatedActivity);
         }
     }
+
+    public void deleteActivity(Long id) {
+        this.activityRepository.deleteById(id);
+    }
 }

@@ -42,6 +42,20 @@ public class Activity implements IActivity {
             inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID"))
     private Collection<Customer> customersInThisActivity;
 
+    public Activity(String info, LocalDate dataInizio, LocalDate dataFine) {
+        this.info = info;
+        this.activityBeginDate = dataInizio;
+        this.activityEndDate = dataFine;
+        this.maxNumberOfPeople = -1;
+    }
+
+    public Activity(String info, LocalDate dataInizio, LocalDate dataFine, int numPartecipanti) {
+        this.info = info;
+        this.activityBeginDate = dataInizio;
+        this.activityEndDate = dataFine;
+        this.maxNumberOfPeople = numPartecipanti;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

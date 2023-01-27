@@ -5,6 +5,8 @@ import it.unicam.cs.ids.casotto.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class CustomerManager {
 
@@ -19,7 +21,7 @@ public class CustomerManager {
         this.customerRepository.save(customer);
     }
 
-    public void makeReservation(Long id){
-        reservationManager.makeReservation(customerRepository.findById(id).orElse(null));
+    public void makeReservation(Long id, LocalDate startDate, LocalDate endDate){
+        reservationManager.makeReservation(customerRepository.findById(id).orElse(null), startDate, endDate);
     }
 }
