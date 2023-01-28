@@ -1,19 +1,7 @@
 
-v
-Fsrc/main/java/it/unicam/cs/ids/casotto/controller/ActivityManager.java,c\f\cfe3a94d4e37be309d1a32d4051ca6c61e06ece9
-z
-Jsrc/main/java/it/unicam/cs/ids/casotto/controller/NotificationManager.java,0\6\06ed66a034bf2933d08544c2e383039f8dd70b8f
-v
-Fsrc/main/java/it/unicam/cs/ids/casotto/controller/CustomerManager.java,2\4\24f38acd88fd29f1de24c8ac2596756bb111db41
-g
-7src/main/java/it/unicam/cs/ids/casotto/model/Order.java,a\7\a7bbdf0d6b155113689ffedad3c8cea365048362
-i
-9src/main/java/it/unicam/cs/ids/casotto/model/Receipt.java,3\6\36da605ecab30ef2f0f938ef76018ca7e4c0207e
 t
-Dsrc/main/java/it/unicam/cs/ids/casotto/controller/BarController.java,8\1\816cdde5a0846efba4c3a2ae084fc74792e97511
-k
-;src/main/java/it/unicam/cs/ids/casotto/model/IActivity.java,6\9\694a0727d266061c6b7e9728b3139d42202c9dc8
-j
-:src/main/java/it/unicam/cs/ids/casotto/model/Activity.java,c\6\c6030847c5b38278b5229cdfd63ccde241a378d4
+Dsrc/main/java/it/unicam/cs/ids/casotto/controller/MailScheduler.java,2\6\2638a81a151f7b1261f4c89d077d2f68e9e19171
+y
+Isrc/main/java/it/unicam/cs/ids/casotto/controller/ReservationManager.java,3\4\347a40a4318a16a2b48f438e44dd8ffd232060c5
 n
 >src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java,6\4\643edbeca41c809c17517bff1b843bfb497eb12e

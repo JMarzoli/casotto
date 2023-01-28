@@ -5,35 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77490d4a-55c3-4eea-a8ec-ec3673700a0c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_angus_jakarta_mail_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_6_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/casotto.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/CustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/MailSender2.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/NotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/CustomerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/CustomerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/LocationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/LocationManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/MailSender2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ReservationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ReservationManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/model/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/model/Activity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/CasottoApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/UC_Prenota_Postazione.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/UcClientePresenteInStrutturaAcquistaProdottiTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,31 +36,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "proofread",
-    "spring.configuration.checksum": "37408f5f19ab0f1fb5ee4d2a1e98325f",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;37408f5f19ab0f1fb5ee4d2a1e98325f&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leona\Documents\Progetti\casotto\codebase\src\main\java\it\unicam\cs\ids\casotto\controller" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="CasottoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="casotto" />
@@ -107,6 +86,7 @@
       <workItem from="1674845078371" duration="36000" />
       <workItem from="1674845129219" duration="84000" />
       <workItem from="1674896560830" duration="8903000" />
+      <workItem from="1674922951284" duration="1722000" />
     </task>
     <servers />
   </component>

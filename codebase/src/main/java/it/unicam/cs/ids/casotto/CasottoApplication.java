@@ -9,29 +9,33 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
-
-import javax.swing.text.Position;
-import java.nio.channels.ScatteringByteChannel;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
+@EnableScheduling
 public class CasottoApplication {
+
 	private ReservationManager reservationManager;
+
 	private LocationManager locationManager;
+
 	private CustomerManager customerManager;
+
 	private ActivityManager activityManager;
+
 	private BarController barController;
+
 	private Beach beach;
+
 	private BeachManager beachManager;
+
 	private final Random random = new Random();
-    private Scanner scanner = new Scanner(System.in);
+
+    private final Scanner scanner = new Scanner(System.in);
 
 	private int stampeRimaste = 5;
 
@@ -45,9 +49,9 @@ public class CasottoApplication {
 		};
 	}
 
-/*	private void ssdPrenotaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
-		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
-		List<Activity> activityList = activityManager.getAllActivities();
+	private void ssdPrenotaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
+		this.activityManager = new ActivityManager(activityRepository, customerRepository);
+		List<Activity> activityList = this.activityManager.getAllActivities();
 		if (activityList.isEmpty()) {
 			System.out.println("Nessuna attività presente, ci dispiace");
 		} else {
@@ -55,7 +59,7 @@ public class CasottoApplication {
 				System.out.println("Per favore scegli un'attività alla quale iscriverti");
 				activityList.forEach(System.out::println);
 				int IDAttività = scanner.nextInt();
-				boolean response = activityManager.addCustomerToActivity(1, IDAttività);
+				boolean response = this.activityManager.addCustomerToActivity(1, IDAttività);
 				if (response) {
 					System.out.println("Prenotazione effettuata con successo");
 					break;
@@ -85,29 +89,30 @@ public class CasottoApplication {
 		}
 	}
 
-	*//**
+	/**
 	 * This method represents the Use Case: Effettua Prenotazione, where the Client can reserve a Location from the beach.
 	 * He also can use a discount code to reduce the total price.
 	 * @throws InterruptedException
-	 *//*
-	public void ssdEffettuaPrenotazione() throws InterruptedException {
+	 */
+	public void ssdEffettuaPrenotazione(ReservationRepository reservationRepository, LocationRepository locationRepository) throws InterruptedException {
+		this.locationManager = new LocationManager(locationRepository);
+		this.reservationManager = new ReservationManager(reservationRepository, this.locationManager);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		boolean repeat = true;
-
 		while(repeat) {
 			System.out.println("Per favore inserisci la data per la prenotazione: dd/MM/yyyy");
 			LocalDate reservationDate = LocalDate.parse(scanner.nextLine(), formatter);
-			int scelta = 0;
+			int scelta;
 			List<Location> availableLocations = this.reservationManager.getAvailableLocationsOnADate(reservationDate);
 			if (!availableLocations.isEmpty()) {
-				System.out.println("Ecco le postazioni disponibili per la data " + String.valueOf(reservationDate) + "\n");
+				System.out.println("Ecco le postazioni disponibili per la data " + reservationDate + "\n");
 				for(scelta = 0; scelta < availableLocations.size(); ++scelta) {
-					System.out.println("" + scelta + ": " + String.valueOf(availableLocations.get(scelta)));
+					System.out.println("" + scelta + ": " + availableLocations.get(scelta));
 				}
 
 				System.out.println("Scegli una delle postazioni disponibili\n");
 				scelta = Integer.parseInt(scanner.nextLine());
-				System.out.println("Il prezzo della postazione " + scelta + " è: " + this.locationManager.getTotalPrice(((Location)availableLocations.get(scelta)).getId()) + "\n");
+				System.out.println("Il prezzo della postazione " + scelta + " è: " + this.locationManager.getTotalPrice((availableLocations.get(scelta)).getId()) + "\n");
 				Location choice = availableLocations.get(scelta);
 				System.out.println("Vuoi inserire un codice sconto? Y/n\n");
 				if (scanner.nextLine().equalsIgnoreCase("y")) {
@@ -129,12 +134,13 @@ public class CasottoApplication {
 		}
 	}
 
-	*//**
+	/**
 	 * This method represents the Use Case: Modifica Attività, where the Manager can add, delete and update an Activity.
-	 *//*
-	public void ssdModificaAttività(){
+	 */
+	public void ssdModificaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
+		this.activityManager = new ActivityManager(activityRepository, customerRepository);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		List<Activity> allActivities = activityManager.getAllActivities();
+		List<Activity> allActivities = this.activityManager.getAllActivities();
 		System.out.println("Ecco tutte le attività in programma: \n");
 		for (int i = 0; i < allActivities.size(); i++) {
 			System.out.println(i + ": " + allActivities.get(i).getInfo());
@@ -145,7 +151,6 @@ public class CasottoApplication {
 		System.out.println("3: Modifica un'attività.\n");
 		System.out.println("0: Annulla operazione.\n");
 		String scelta = scanner.nextLine();
-
 		switch (Integer.parseInt(scelta)){
 			case 1: {
 				System.out.println("Hai scelto di inserire un'attività.");
@@ -160,19 +165,21 @@ public class CasottoApplication {
 				if(Integer.parseInt(numPartecipanti)<0) this.activityManager.saveActivity(new Activity(info,LocalDate.parse(dataInizio,formatter),LocalDate.parse(dataFine,formatter)));
 				else this.activityManager.saveActivity(new Activity(info,LocalDate.parse(dataInizio,formatter),LocalDate.parse(dataFine,formatter),Integer.parseInt(numPartecipanti)));
 				System.out.println("Attività aggiunta con successo!");
+				break;
 			}
 			case 2: {
 				System.out.println("Seleziona l'attività da eliminare: \n");
 				scelta = scanner.nextLine();
 				System.out.println("Hai selezionato l'attività numero "+scelta+"\n");
-				activityManager.deleteActivity(allActivities.get(Integer.parseInt(scelta)).getId());
+				this.activityManager.deleteActivity(allActivities.get(Integer.parseInt(scelta)).getId());
+				break;
 			}
 			case 3: {
 				System.out.println("Seleziona l'attività da modificare: \n");
 				scelta = scanner.nextLine();
 				System.out.println("Hai selezionato l'attività numero "+scelta+"\n");
 				Activity activity = allActivities.get(Integer.parseInt(scelta));
-				do{
+				do {
 					System.out.println("Scegli cosa modificare: ");
 					System.out.println("1: Modifica le info.\n");
 					System.out.println("2: Modifica la data d'inizio.\n");
@@ -186,34 +193,36 @@ public class CasottoApplication {
 							String info = scanner.nextLine();
 							activity.setInfo(info);
 							System.out.println("Aggiornata attività scelta con la nuova info!");
+							break;
 						}
 						case 2:{
 							System.out.println("Inserisci la nuova data d'inizio: (dd/MM/yyyy)");
 							String date = scanner.nextLine();
 							activity.setActivityBeginDate(LocalDate.parse(date,formatter));
 							System.out.println("Aggiornata attività scelta con la nuova data d'inizio!");
+							break;
 						}
 						case 3:{
 							System.out.println("Inserisci la nuova data di fine: (dd/MM/yyyy)");
 							String date = scanner.nextLine();
 							activity.setActivityBeginDate(LocalDate.parse(date,formatter));
 							System.out.println("Aggiornata attività scelta con la nuova data di fine!");
+							break;
 						}case 4:{
 							System.out.println("Inserisci il nuovo numero massimo di partecipanti: ");
 							String date = scanner.nextLine();
 							activity.setMaxNumberOfPeople(Integer.parseInt(date));
-							System.out.println("Aggiornata attività scelta con il vuovo numero massimo di partecipanti!");
+							System.out.println("Aggiornata attività scelta con il nuovo numero massimo di partecipanti!");
 						}
-					};
+					}
 					System.out.println("Premi 1 se vuoi effettuare un'altra modifica a questa attività: ");
 					scelta = scanner.nextLine();
 				} while(scelta.equals("1"));
-				activityManager.updateActivity(activity);
+				this.activityManager.updateActivity(activity);
 			}
 		}
 	}
-*//*
-viualizzo
+/*viualizzo
 scelgo
 ancora?
 ecco totale
@@ -222,14 +231,14 @@ inquadro
 controlla con postazioni
 pago o inseirsci ancora
 creo ordine
-invio
- *//*
-	public void ssdAcquistaProdotti() throws InterruptedException {
+invio*/
+	public void ssdAcquistaProdotti(ProductRepository productRepository, OrderRepository orderRepository) throws InterruptedException {
+		this.barController = new BarController(productRepository, orderRepository);
 		System.out.println("Benvenuto al servizio Bar della struttura!");
 		System.out.println("Seleziona il prodotto che vuoi acquistare: \n");
-		List<Product> products = barController.getProducts();
+		List<Product> products = this.barController.getProducts();
 		List<Product> productsInOrder = new LinkedList<>();
-		int n = 0;
+		int n;
 		boolean loop =true;
 		for (n = 0; n < products.size(); n++) {
 			System.out.println(n +") " + products.get(n).getName());
@@ -255,23 +264,25 @@ invio
 		if(location == null) {
 			System.out.println("Inizio procedura di pagamento...\n");
 			ssdElaboraPagamento(totale);
-			barController.createNewOrder(productsInOrder);
+			this.barController.createNewOrder(productsInOrder);
 		} else {
 			System.out.println("La postazione associata al QrCode inquadrato non risulta presente nel sistema...");
 		}
 
 	}
+
 	public void ssdRiceveOrdine(){
 
 	}
 
-	*//**
+	/**
 	 * This method represent th Use Case: Prende in carico ordine, where the worker wants to take charge of an order.
-	 *//*
-	public void ssdPrendeInCaricoOrdine(){
+	 */
+	public void ssdPrendeInCaricoOrdine(ProductRepository productRepository, OrderRepository orderRepository){
+		this.barController = new BarController(productRepository, orderRepository);
 		System.out.println("Ecco la lista degli ordini ancora da soddisfare: ");
-		List<Order> orders = barController.getAllOrders();
-		int scelta = 0;
+		List<Order> orders = this.barController.getAllOrders();
+		int scelta;
 		for(scelta = 0; scelta < orders.size(); scelta++){
 			System.out.println(scelta + ") " + orders.get(scelta));
 		}
@@ -281,14 +292,15 @@ invio
 		System.out.println("Ordine segnato come completato correttamente!");
 		//Todo: Manca il metodo stampa scontrino.
 	}
-	public void UC_NotificaTerminaliPresenzaOrdini(){
-		List<Order> orders = barController.getAllOrders();
+	public void UC_NotificaTerminaliPresenzaOrdini(ProductRepository productRepository, OrderRepository orderRepository){
+		this.barController = new BarController(productRepository, orderRepository);
+		List<Order> orders = this.barController.getAllOrders();
 		if (!orders.isEmpty()){
 			System.out.println("Ci sono ancora ordini da soddisfare!");
 		}
-	}*/
+	}
 
-/*	public void ssdNotificaClienti(CustomerRepository customerRepository, ActivityRepository activityRepository, JavaMailSender javaMailSender) {
+	public void ssdNotificaClienti(CustomerRepository customerRepository, ActivityRepository activityRepository, JavaMailSender javaMailSender) {
 		NotificationManager notificationManager = new NotificationManager(javaMailSender);
 		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
 		CustomerManager customerManager = new CustomerManager(customerRepository);
@@ -334,14 +346,6 @@ invio
 		}
 	}
 
-	public void ssdInviaReminderGiornaliero(ActivityRepository activityRepository, CustomerRepository customerRepository, JavaMailSender javaMailSender) {
-		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
-		NotificationManager notificationManager = new NotificationManager(javaMailSender);
-		List<Activity> activityList = activityManager.getAllActivities().stream().filter(activity -> LocalDate.now().isEqual(activity.getActivityBeginDate())).toList();
-		activityList.forEach(activity ->
-				activity.getCustomersInThisActivity().forEach(customer ->
-						notificationManager.sendSimpleMessage(customer.getEmail(), "Oggi inizierà un'attività alla quale sei iscritto!", activity.getInfo())));
-	}*/
 
 	/**
 	 * This method represents the use case Visualizza Catalogo Servizi
@@ -354,30 +358,33 @@ invio
 	 * This method represents the use case Visualizza Attività in Programma
 	 * @return
 	 */
-	public void ssdVisualizzaPostazioniStruttura(){
-		System.out.println(locationManager.getAllLocations());
+	public void ssdVisualizzaPostazioniStruttura(LocationRepository locationRepository) {
+		this.locationManager = new LocationManager(locationRepository);
+		System.out.println(this.locationManager.getAllLocations());
 	}
 
 	/**
 	 * This method contains the behavior of the Visualizza Attività in Programma usa case
 	 */
-	public void ssdVisualizzaAttivitaInProgramma(){
+	public void ssdVisualizzaAttivitàInProgramma(ActivityRepository activityRepository, CustomerRepository customerRepository) {
+		this.activityManager = new ActivityManager(activityRepository, customerRepository);
 		System.out.println(activityManager.getAllActivities());
 	}
 
 	/**
 	 * This method contains the behavior of the Modifica Fattore di Prezzo use case
 	 */
-	public void sssModificaFattoreDiPrezzo(){
+	public void sssModificaFattoreDiPrezzo(LocationRepository locationRepository) {
+		this.locationManager = new LocationManager(locationRepository);
 		System.out.println("Selezionare il numero della postazione di cui si vuole modificare il fattore di prezzo");
 		int i = 1;
 		//asking for the location that should be modified
-		for (Location l: locationManager.getAllLocations()) {
+		for (Location l: this.locationManager.getAllLocations()) {
 			System.out.println("Postazione numero: " + i++ + l.getId());
 		}
 		Scanner in = new Scanner(System.in);
 		int locNumber = in.nextInt() - 1;
-		Location locToModify = locationManager.getAllLocations().get(locNumber);
+		Location locToModify = this.locationManager.getAllLocations().get(locNumber);
 		//eliciting for the new factors
 		System.out.println("The actual price factor of the chairs in this location is " + locToModify.getBeachChairs().get(0).getPrice());
 		System.out.println("Insert the new factor for chairs: ");
@@ -395,20 +402,21 @@ invio
 		System.out.println("Modifica avvenuta con successo");
 	}
 
-	public void ssdModificaStrutturaSpiaggia(){
+	public void ssdModificaStrutturaSpiaggia(BeachRepository beachRepository) {
+		this.beachManager = new BeachManager(beachRepository);
 		//asking for the sand type
 		System.out.println("La spiaggia ha come tipo di sabbia: " + beach.getSandType());
-		System.out.println("Inserire il nuovo tipo di sabbia, o premere invio per non modficarlo");
+		System.out.println("Inserire il nuovo tipo di sabbia, o premere invio per non modificarlo");
 		String newType = scanner.nextLine();
 		//asking for the description
 		System.out.println("La descrizione della spiaggia è: " + beach.getDescription());
-		System.out.println("Inserire la nuova descrizione, o premere invio per non modficarla");
+		System.out.println("Inserire la nuova descrizione, o premere invio per non modificarla");
 		String newDes = scanner.nextLine();
 		//effects the changes
 		if(newType == null) { newType = beach.getSandType();}
 		if(newDes == null) {newDes = beach.getDescription();}
-		beachManager.updateModifyBeach(beach.getId(), newType, newDes);
-		System.out.println("Le modifiche sono state effettuate con succeso");
+		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes);
+		System.out.println("Le modifiche sono state effettuate con successo");
 	}
 
 	//TODO wip
