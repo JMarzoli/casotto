@@ -1,17 +1,16 @@
 package it.unicam.cs.ids.casotto;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import it.unicam.cs.ids.casotto.controller.*;
 import it.unicam.cs.ids.casotto.model.*;
-import it.unicam.cs.ids.casotto.repository.ActivityRepository;
-import it.unicam.cs.ids.casotto.repository.CustomerRepository;
-import it.unicam.cs.ids.casotto.repository.OrderRepository;
-import it.unicam.cs.ids.casotto.repository.ProductRepository;
+import it.unicam.cs.ids.casotto.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import javax.swing.text.Position;
 import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,12 +23,14 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class CasottoApplication {
-/*	private ReservationManager reservationManager;
+	private ReservationManager reservationManager;
 	private LocationManager locationManager;
 	private CustomerManager customerManager;
 	private ActivityManager activityManager;
 	private BarController barController;
-	private final Random random = new Random();*/
+	private Beach beach;
+	private BeachManager beachManager;
+	private final Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
 
 	private int stampeRimaste = 5;
@@ -341,4 +342,75 @@ invio
 				activity.getCustomersInThisActivity().forEach(customer ->
 						notificationManager.sendSimpleMessage(customer.getEmail(), "Oggi inizierà un'attività alla quale sei iscritto!", activity.getInfo())));
 	}*/
+
+	/**
+	 * This method represents the use case Visualizza Catalogo Servizi
+	 */
+	public void ssdVisualizzaCatalogoServizi(){
+		System.out.println("SERVIZI DISPONIBILI IN QUESTO STABILIMENTO" + List.of("SERVIZIO BAR", "SERVIZIO BALNEARE CON PRENOTAZIONE DI OMBRELLONI E LETTINI", "ATTIVITA' ALL'APERTO"));
+	}
+
+	/**
+	 * This method represents the use case Visualizza Attività in Programma
+	 * @return
+	 */
+	public void ssdVisualizzaPostazioniStruttura(){
+		System.out.println(locationManager.getAllLocations());
+	}
+
+	/**
+	 * This method contains the behavior of the Visualizza Attività in Programma usa case
+	 */
+	public void ssdVisualizzaAttivitaInProgramma(){
+		System.out.println(activityManager.getAllActivities());
+	}
+
+	/**
+	 * This method contains the behavior of the Modifica Fattore di Prezzo use case
+	 */
+	public void sssModificaFattoreDiPrezzo(){
+		System.out.println("Selezionare il numero della postazione di cui si vuole modificare il fattore di prezzo");
+		int i = 1;
+		//asking for the location that should be modified
+		for (Location l: locationManager.getAllLocations()) {
+			System.out.println("Postazione numero: " + i++ + l.getId());
+		}
+		Scanner in = new Scanner(System.in);
+		int locNumber = in.nextInt() - 1;
+		Location locToModify = locationManager.getAllLocations().get(locNumber);
+		//eliciting for the new factors
+		System.out.println("The actual price factor of the chairs in this location is " + locToModify.getBeachChairs().get(0).getPrice());
+		System.out.println("Insert the new factor for chairs: ");
+		double newChairFactor = in.nextDouble();
+		System.out.println("The actual price factor of the umbrellas in this location is " + locToModify.getUmbrellas().get(0).getPrice());
+		System.out.println("Insert the new factor for umbrellas: ");
+		double newUmbrellasFactor = in.nextDouble();
+		//effecting the changes
+		for (BeachChair c : locToModify.getBeachChairs()) {
+			c.setPrice(newChairFactor);
+		}
+		for(Umbrella u : locToModify.getUmbrellas()){
+			u.setPrice(newUmbrellasFactor);
+		}
+		System.out.println("Modifica avvenuta con successo");
+	}
+
+	public void ssdModificaStrutturaSpiaggia(){
+		//asking for the sand type
+		System.out.println("La spiaggia ha come tipo di sabbia: " + beach.getSandType());
+		System.out.println("Inserire il nuovo tipo di sabbia, o premere invio per non modficarlo");
+		String newType = scanner.nextLine();
+		//asking for the description
+		System.out.println("La descrizione della spiaggia è: " + beach.getDescription());
+		System.out.println("Inserire la nuova descrizione, o premere invio per non modficarla");
+		String newDes = scanner.nextLine();
+		//effects the changes
+		if(newType == null) { newType = beach.getSandType();}
+		if(newDes == null) {newDes = beach.getDescription();}
+		beachManager.updateModifyBeach(beach.getId(), newType, newDes);
+		System.out.println("Le modifiche sono state effettuate con succeso");
+	}
+
+	//TODO wip
+	public void ssdPrendeInCaricoOrdine(){}
 }

@@ -23,10 +23,10 @@ public class Location implements ILocation{
     private String desc;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Umbrella> umbrellas;
+    private List<Umbrella> umbrellas;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<BeachChair> beachChairs;
+    private List<BeachChair> beachChairs;
 
     public Location(String desc) {
         this.desc = desc;
