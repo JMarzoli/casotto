@@ -4,16 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85f76a25-892b-442b-911b-d015980d5ff3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/codebase/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="77490d4a-55c3-4eea-a8ec-ec3673700a0c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_angus_jakarta_mail_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_6_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/casotto.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/MailSender2.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/NotificationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ActivityManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/CustomerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/CustomerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/LocationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/LocationManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/MailSender2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ReservationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/ReservationManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/model/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/model/Activity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/CasottoApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/UC_Prenota_Postazione.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/test-classes/it/unicam/cs/ids/casotto/UcClientePresenteInStrutturaAcquistaProdottiTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -25,60 +57,56 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2JDfHbfNk6DngShUKkImo4M3Hq0" />
+  <component name="ProjectId" id="2KvBFmAdeaNan6Xqe2wtKePbYAp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;37408f5f19ab0f1fb5ee4d2a1e98325f&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "proofread",
+    "spring.configuration.checksum": "37408f5f19ab0f1fb5ee4d2a1e98325f",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
+    ]
   }
-}</component>
-  <component name="RunManager" selected="JUnit.UC_Prenota_Postazione.test1">
-    <configuration name="UC_Prenota_Postazione.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="casotto" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="it.unicam.cs.ids.casotto.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="it.unicam.cs.ids.casotto" />
-      <option name="MAIN_CLASS_NAME" value="it.unicam.cs.ids.casotto.UC_Prenota_Postazione" />
-      <option name="METHOD_NAME" value="test1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CasottoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CasottoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="casotto" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="it.unicam.cs.ids.casotto.CasottoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.UC_Prenota_Postazione.test1" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="85f76a25-892b-442b-911b-d015980d5ff3" name="Changes" comment="" />
-      <created>1671617489562</created>
+      <changelist id="77490d4a-55c3-4eea-a8ec-ec3673700a0c" name="Changes" comment="" />
+      <created>1674845077220</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671617489562</updated>
-      <workItem from="1671617493125" duration="608000" />
-      <workItem from="1672949426720" duration="200000" />
-      <workItem from="1674832207104" duration="13000" />
+      <updated>1674845077220</updated>
+      <workItem from="1674845078371" duration="36000" />
+      <workItem from="1674845129219" duration="84000" />
+      <workItem from="1674896560830" duration="8903000" />
     </task>
     <servers />
   </component>
@@ -95,5 +123,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

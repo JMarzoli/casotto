@@ -25,6 +25,7 @@ public class BarController {
     public void addNewProduct(Product product) {
         this.productRepository.save(product);
     }
+
     public List<Product> getProducts() {
         return this.productRepository.findAll();
     }
@@ -43,9 +44,11 @@ public class BarController {
         order.setPrice(price);
         this.orderRepository.save(order);
     }
-    public void setOrderAsCompleted(Long orderId) {
+
+    public Order setOrderAsCompleted(Long orderId) {
         Order order = this.orderRepository.getReferenceById(orderId);
         order.setHasBeenCompleted(true);
         this.orderRepository.save(order);
+        return order;
     }
 }

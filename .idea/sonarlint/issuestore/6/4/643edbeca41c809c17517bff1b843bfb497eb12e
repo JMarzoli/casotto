@@ -1,0 +1,34 @@
+
+Q	java:S125"<This block of commented-out lines of code should be removed.(ôâ±
+V	java:S125/"<This block of commented-out lines of code should be removed.(¯âÿ›øÿÿÿÿ
+Q	java:S125\"<This block of commented-out lines of code should be removed.(«öôã
+W	java:S125†"<This block of commented-out lines of code should be removed.(ÜˆÄÄøÿÿÿÿ
+R	java:S125â"<This block of commented-out lines of code should be removed.(©‹óÏ
+W	java:S125"<This block of commented-out lines of code should be removed.(ãŒÎÙùÿÿÿÿ
+^	java:S125¢"<This block of commented-out lines of code should be removed.(Š¥¨›øÿÿÿÿ8×“”Áß0
+I
+java:S1135™"2Complete the task associated to this TODO comment.(‡å°à
+b
+java:S1128"@Remove this unused import 'it.unicam.cs.ids.casotto.controller'.(‡ÿÊ·ùÿÿÿÿ8×“”Áß0
+]
+java:S1128";Remove this unused import 'it.unicam.cs.ids.casotto.model'.(éêÊ´şÿÿÿÿ8×“”Áß0
+Z
+java:S1128"DRemove this unused import 'java.nio.channels.ScatteringByteChannel'.(İ‚¼
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8×“”Áß0
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8×“”Áß0
+U
+java:S1128"?Remove this unused import 'java.time.format.DateTimeFormatter'.(‰÷÷ª
+U
+java:S1128":Remove this unused import 'java.util.concurrent.Executor'.(÷ı¶Œúÿÿÿÿ
+V
+java:S1128";Remove this unused import 'java.util.concurrent.Executors'.(äåÒÛÿÿÿÿÿ
+e
+java:S1128"JRemove this unused import 'java.util.concurrent.ScheduledExecutorService'.(Êßˆÿÿÿÿÿ
+P
+java:S1128":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş
+H
+java:S1068!"+Remove this unused "scanner" private field.(©ñ®¯8×“”Áß0
+S
+java:S1068#"1Remove this unused "stampeRimaste" private field.(ã‡Ü“şÿÿÿÿ8Ø“”Áß0

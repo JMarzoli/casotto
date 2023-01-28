@@ -4,35 +4,47 @@ import it.unicam.cs.ids.casotto.controller.*;
 import it.unicam.cs.ids.casotto.model.*;
 import it.unicam.cs.ids.casotto.repository.ActivityRepository;
 import it.unicam.cs.ids.casotto.repository.CustomerRepository;
+import it.unicam.cs.ids.casotto.repository.OrderRepository;
+import it.unicam.cs.ids.casotto.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class CasottoApplication {
-	private ReservationManager reservationManager;
+/*	private ReservationManager reservationManager;
 	private LocationManager locationManager;
 	private CustomerManager customerManager;
 	private ActivityManager activityManager;
 	private BarController barController;
-	private final Random random = new Random();
+	private final Random random = new Random();*/
     private Scanner scanner = new Scanner(System.in);
+
+	private int stampeRimaste = 5;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoApplication.class, args);
 	}
 
-	/*@Bean
-	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository) {
-		return args -> ;
-	}*/
+	@Bean
+	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository, JavaMailSender javaMailSender, ProductRepository productRepository, OrderRepository orderRepository) {
+		return args -> {
+		};
+	}
 
-	private void ssdPrenotaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
+/*	private void ssdPrenotaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
 		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
 		List<Activity> activityList = activityManager.getAllActivities();
 		if (activityList.isEmpty()) {
@@ -72,11 +84,11 @@ public class CasottoApplication {
 		}
 	}
 
-	/**
+	*//**
 	 * This method represents the Use Case: Effettua Prenotazione, where the Client can reserve a Location from the beach.
 	 * He also can use a discount code to reduce the total price.
 	 * @throws InterruptedException
-	 */
+	 *//*
 	public void ssdEffettuaPrenotazione() throws InterruptedException {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		boolean repeat = true;
@@ -116,9 +128,9 @@ public class CasottoApplication {
 		}
 	}
 
-	/**
+	*//**
 	 * This method represents the Use Case: Modifica Attività, where the Manager can add, delete and update an Activity.
-	 */
+	 *//*
 	public void ssdModificaAttività(){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		List<Activity> allActivities = activityManager.getAllActivities();
@@ -199,7 +211,7 @@ public class CasottoApplication {
 			}
 		}
 	}
-/*
+*//*
 viualizzo
 scelgo
 ancora?
@@ -210,7 +222,7 @@ controlla con postazioni
 pago o inseirsci ancora
 creo ordine
 invio
- */
+ *//*
 	public void ssdAcquistaProdotti() throws InterruptedException {
 		System.out.println("Benvenuto al servizio Bar della struttura!");
 		System.out.println("Seleziona il prodotto che vuoi acquistare: \n");
@@ -252,9 +264,9 @@ invio
 
 	}
 
-	/**
+	*//**
 	 * This method represent th Use Case: Prende in carico ordine, where the worker wants to take charge of an order.
-	 */
+	 *//*
 	public void ssdPrendeInCaricoOrdine(){
 		System.out.println("Ecco la lista degli ordini ancora da soddisfare: ");
 		List<Order> orders = barController.getAllOrders();
@@ -273,5 +285,60 @@ invio
 		if (!orders.isEmpty()){
 			System.out.println("Ci sono ancora ordini da soddisfare!");
 		}
+	}*/
+
+/*	public void ssdNotificaClienti(CustomerRepository customerRepository, ActivityRepository activityRepository, JavaMailSender javaMailSender) {
+		NotificationManager notificationManager = new NotificationManager(javaMailSender);
+		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
+		CustomerManager customerManager = new CustomerManager(customerRepository);
+		System.out.println("Scegli la categoria di notifica che vuoi inviare:");
+		System.out.println("1: Inviare il programma di un'attività.\n");
+		System.out.println("2: Inviare una promozione.\n");
+		switch (Integer.parseInt(scanner.nextLine())) {
+			case 1:
+				List<Activity> activityList = activityManager.getAllActivities();
+				System.out.println("Scegli l'attività per inviare il programma, usando il numero");
+				activityList.forEach(activity -> System.out.println(activity.getId() + ": " + activity.getInfo() + "\n"));
+				try {
+					int scelta = scanner.nextInt();
+					Activity activity = activityList.get(--scelta);
+					activity.getCustomersInThisActivity().forEach(customer ->
+							notificationManager.sendSimpleMessage(customer.getEmail(), "Programma dell'attività!", activity.getInfo()));
+				} catch (Exception ex) {
+					System.out.println("Attività non presente, riprova");
+				}
+				break;
+			case 2:
+				System.out.println("Inserisci il testo della promozione");
+				String promozione = scanner.nextLine();
+				customerManager.getAllCustomers().forEach(customer ->
+						notificationManager.sendSimpleMessage(customer.getEmail(), "Nuova Promozione!", promozione));
+				break;
+			default:
+				System.out.println("Scelta non corretta, riprova");
+		}
 	}
+
+	public void ssdPersonaleStrutturaVisualizzaStoricoOrdini(ProductRepository productRepository, OrderRepository orderRepository) {
+		BarController barController = new BarController(productRepository, orderRepository);
+		barController.getAllOrders().forEach(System.out::println);
+	}
+
+	public void ssdStampaScontrino(Order order) {
+		if (stampeRimaste <= 0) {
+			System.out.println("Per favore cambia lo scontrino, è finito");
+		} else {
+			System.out.println(new Receipt(LocalDateTime.now(), order, order.getPrice()));
+			stampeRimaste--;
+		}
+	}
+
+	public void ssdInviaReminderGiornaliero(ActivityRepository activityRepository, CustomerRepository customerRepository, JavaMailSender javaMailSender) {
+		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
+		NotificationManager notificationManager = new NotificationManager(javaMailSender);
+		List<Activity> activityList = activityManager.getAllActivities().stream().filter(activity -> LocalDate.now().isEqual(activity.getActivityBeginDate())).toList();
+		activityList.forEach(activity ->
+				activity.getCustomersInThisActivity().forEach(customer ->
+						notificationManager.sendSimpleMessage(customer.getEmail(), "Oggi inizierà un'attività alla quale sei iscritto!", activity.getInfo())));
+	}*/
 }
