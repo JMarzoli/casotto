@@ -46,6 +46,22 @@ public class CasottoApplication {
 	@Bean
 	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository, JavaMailSender javaMailSender, ProductRepository productRepository, OrderRepository orderRepository) {
 		return args -> {
+			System.out.println("Benvenuto in Casotto!");
+			System.out.println("Seleziona il tipo di account con cui accedere: ");
+			System.out.println("1) Account Gestore struttura.");
+			System.out.println("2) Account Cliente struttura.");
+			int scelta = scanner.nextInt();
+			if(scelta==1){
+				System.out.println("Benvenuto Gestore!");
+				Manager manager = new Manager();
+				System.out.println("Seleziona il caso d'uso che desideri provare: ");
+				//ToDo: inserire tutti casi d'uso del gestore
+			} else {
+				System.out.println("Benvenuto Cliente!");
+				Customer customer = new Customer();
+				System.out.println("Seleziona il caso d'uso che desideri provare: ");
+				//ToDo: inserire tutti casi d'uso del cliente
+			}
 		};
 	}
 
@@ -105,7 +121,7 @@ public class CasottoApplication {
 			int scelta;
 			List<Location> availableLocations = this.reservationManager.getAvailableLocationsOnADate(reservationStartDate,reservationEndDate);
 			if (!availableLocations.isEmpty()) {
-				System.out.println("Ecco le postazioni disponibili per la data " + reservationStartDate + "\n");
+				System.out.println("Ecco le postazioni disponibili per il periodo tra " + reservationStartDate +" e " + reservationEndDate + "\n");
 				for(scelta = 0; scelta < availableLocations.size(); ++scelta) {
 					System.out.println("" + scelta + ": " + availableLocations.get(scelta));
 				}

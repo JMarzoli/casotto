@@ -101,7 +101,7 @@ public class ReservationManager {
     public List<Location> getAvailableLocationsOnADate(LocalDate reservationStartDate,LocalDate reservationEndDate) {
         List<Location> locationsAlreadyOccupied = reservationRepository.findAll()
                 .stream()
-                .filter(reserved -> reserved.getReservationBeginDate().isAfter(reservationStartDate)&&reserved.getReservationEndDate().isBefore(reservationEndDate))
+                .filter(reserved -> reserved.getReservationBeginDate().isBefore(reservationEndDate)&&reserved.getReservationEndDate().isAfter(reservationStartDate))
                 .map(Reservation::getLocationReserved)
                 .toList();
         return locationManager.getAllLocations()
