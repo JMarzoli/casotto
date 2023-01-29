@@ -32,7 +32,4 @@ public class CustomerManager {
         return this.customerRepository.findAll();
     }
 
-    public void makeReservation(Long id, LocalDate startDate, LocalDate endDate){
-        reservationManager.makeReservation(customerRepository.findById(id).orElse(null), startDate, endDate);
-    }
 }

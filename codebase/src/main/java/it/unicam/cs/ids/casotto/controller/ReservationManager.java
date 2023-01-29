@@ -28,12 +28,11 @@ public class ReservationManager {
         this.locationManager = locationManager;
     }
 
-    public void makeReservation(Customer customer,LocalDate startDate, LocalDate endDate) {
-        this.customer = customer;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public void makeReservation(Customer customer, Location location, LocalDate startDate, LocalDate endDate, double reservationPrice) {
         this.reservationDate = LocalDate.now();
+        reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, location, reservationPrice));
     }
+
     public void createReservation(Location locationReserved, double reservationPrice) {
         reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, locationReserved, reservationPrice));
     }
@@ -97,13 +96,12 @@ public class ReservationManager {
 
     /**
      * This method returns all the Locations available on a specific Date.
-     * @param reservationDate to check;
      * @return all the Locations available.
      */
-    public List<Location> getAvailableLocationsOnADate(LocalDate reservationDate) {
+    public List<Location> getAvailableLocationsOnADate(LocalDate reservationStartDate,LocalDate reservationEndDate) {
         List<Location> locationsAlreadyOccupied = reservationRepository.findAll()
                 .stream()
-                .filter(reservation -> reservation.getBookingDate().equals(reservationDate))
+                .filter(reserved -> reserved.getReservationBeginDate().isAfter(reservationStartDate)&&reserved.getReservationEndDate().isBefore(reservationEndDate))
                 .map(Reservation::getLocationReserved)
                 .toList();
         return locationManager.getAllLocations()

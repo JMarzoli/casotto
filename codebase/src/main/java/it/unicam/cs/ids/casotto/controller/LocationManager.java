@@ -63,6 +63,6 @@ public class LocationManager {
     }
 
     public Location findByQrCode(String qrcode) {
-        return null;
+        return new Location();
     }
 }
