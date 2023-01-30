@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.casotto;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import it.unicam.cs.ids.casotto.controller.*;
 import it.unicam.cs.ids.casotto.model.*;
 import it.unicam.cs.ids.casotto.repository.*;
@@ -48,24 +47,95 @@ public class CasottoApplication {
 		return args -> {
 			System.out.println("Benvenuto in Casotto!");
 			System.out.println("Seleziona il tipo di account con cui accedere: ");
-			System.out.println("1) Account Gestore struttura.");
-			System.out.println("2) Account Cliente struttura.");
-			int scelta = scanner.nextInt();
-			if(scelta==1){
+			System.out.println("1) Account Gestore struttura ");
+			System.out.println("2) Account Cliente struttura ");
+			System.out.println("3) Servizi riservati al personale della struttura ");
+			System.out.println("4) Utente non autenticato");
+			int sceltaAccount = scanner.nextInt();
+			// Login da Gestore
+			if(sceltaAccount == 1){
 				System.out.println("Benvenuto Gestore!");
 				Manager manager = new Manager();
-				System.out.println("Seleziona il caso d'uso che desideri provare: ");
-				//ToDo: inserire tutti casi d'uso del gestore
-			} else {
+				System.out.println("Selezionare l'azione che si desidera effettuare: ");
+				System.out.println("1 - Modificare i fattori di prezzo di una postazione");
+				System.out.println("2 - Modificare la struttura della spiaggia");
+				System.out.println("3 - Modificare le attrezzature ludico sportive della spiaggia");
+				System.out.println("4 - Modificare le attività in programma");
+				System.out.println("5 - Inviare una notifica ai clienti");
+				int sceltaGestore;
+				do {
+					System.out.println("Inserire la scelta (da 1 a 6): ");
+					sceltaGestore = scanner.nextInt();
+				} while (sceltaGestore < 1 || sceltaGestore > 5);
+				switch (sceltaGestore) {
+					case 1 :
+						//this.ssdModificaFattoreDiPrezzo(); TODO decommentare metodo e aggiungere il parametro
+					case 2 :
+						//this.ssdModificaStrutturaSpiaggia(); TODO come sopra
+					case 3 :
+						// TODO implementare metodo del caso d'uso Modifica Attrezzature Ludico Sportive
+					case 4 :
+						this.ssdModificaAttività();
+					case 5 :
+						//this.ssdNotificaClienti(); TODO decommentare a aggiungere parametri al metodo
+				}
+			// login da Cliente
+			} else if (sceltaAccount == 2) {
 				System.out.println("Benvenuto Cliente!");
 				Customer customer = new Customer();
-				System.out.println("Seleziona il caso d'uso che desideri provare: ");
-				//ToDo: inserire tutti casi d'uso del cliente
+				System.out.println("Selezionare l'azione che si desidera effettuare: ");
+				System.out.println("1 - Prenotare una postazione");
+				System.out.println("2 - Prenotare un'attività");
+				System.out.println("3 - Effetture un'ordinazione al bar");
+				int sceltaCliente;
+				do {
+					System.out.println("Inserire la scelta (da 1 a 3): ");
+					sceltaCliente = scanner.nextInt();
+				} while (sceltaCliente < 1 || sceltaCliente > 3);
+				switch (sceltaCliente) {
+					case 1:
+						this.ssdEffettuaPrenotazione(customer);
+					case 2:
+						//this.ssdPrenotaAttivita(); TODO decommentare metodo e aggiugnere parametri
+					case 3:
+						this.ssdAcquistaProdotti(customer.getId());
+				}
+			// servizi riservati al personale struttura
+			} else if (sceltaAccount == 3) {
+				System.out.println("Selezionare l'azione che si desidera effettuare: ");
+				System.out.println("1 - Visualizzare lo storico degli ordini");
+				System.out.println("2 - Prendere in carico un'ordine");
+				int sceltaPersonale;
+				do {
+					System.out.println("Inserire la scelta (da 1 a 2): ");
+					sceltaPersonale = scanner.nextInt();
+				} while (sceltaPersonale < 1 || sceltaPersonale > 2);
+				switch (sceltaPersonale) {
+					case 1 :
+						//this.ssdVisualizzaStoricoOrdini(); // TODO decommentare e aggiungere parametri
+					case 2 :
+						this.ssdPrendeInCaricoOrdine();
+				}
+			// utente non Loggato
+			} else if (sceltaAccount == 4) {
+				System.out.println("Selezionare l'azione che si desidera effettuare: ");
+				System.out.println("1 - Visualizzare il catologo dei servizi");
+				int sceltaUtenteGenerico;
+				do {
+					System.out.println("Inserire la scelta: ");
+					sceltaUtenteGenerico = scanner.nextInt();
+				} while (sceltaUtenteGenerico != 1);
+				if(sceltaUtenteGenerico == 1) {
+					this.ssdVisualizzaCatalogoServizi();
+				}
+			} else {
+				System.out.println("Scelta non valida");
+				System.exit(1);
 			}
 		};
 	}
 
-	private void ssdPrenotaAttività(ActivityRepository activityRepository, CustomerRepository customerRepository) {
+	private void ssdPrenotaAttivita(ActivityRepository activityRepository, CustomerRepository customerRepository) {
 		this.activityManager = new ActivityManager(activityRepository, customerRepository);
 		List<Activity> activityList = this.activityManager.getAllActivities();
 		if (activityList.isEmpty()) {
@@ -343,7 +413,7 @@ public class CasottoApplication {
 		}
 	}
 
-	public void ssdPersonaleStrutturaVisualizzaStoricoOrdini(ProductRepository productRepository, OrderRepository orderRepository) {
+	public void ssdVisualizzaStoricoOrdini(ProductRepository productRepository, OrderRepository orderRepository) {
 		BarController barController = new BarController(productRepository, orderRepository);
 		barController.getAllOrders().forEach(System.out::println);
 	}
