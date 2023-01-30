@@ -2,11 +2,13 @@ package it.unicam.cs.ids.casotto.controller;
 
 import it.unicam.cs.ids.casotto.model.Order;
 import it.unicam.cs.ids.casotto.model.Product;
+import it.unicam.cs.ids.casotto.model.Receipt;
 import it.unicam.cs.ids.casotto.repository.OrderRepository;
 import it.unicam.cs.ids.casotto.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -34,6 +36,20 @@ public class BarController {
         return this.orderRepository.findAll();
     }
 
+    /**
+     * Provides the non completed orders
+     * @return a List of order with the boolean parameters set on false
+     */
+    public List<Order> getNonCompletedOrder() {
+        List<Order> orders = this.getAllOrders();
+        for(Order o : orders) {
+            if(o.isHasBeenCompleted()) {
+                orders.remove(o);
+            }
+        }
+        return orders;
+    }
+
     public void createNewOrder(List<Product> products) {
         Order order = new Order();
         order.setProducts(products);
@@ -51,4 +67,16 @@ public class BarController {
         this.orderRepository.save(order);
         return order;
     }
+
+    /**
+     * Creates a new receipt for an order
+     * @param order the order of interest
+     * @return a receipt
+     */
+    public Receipt createRecipt(Order order) {
+        LocalDateTime time = LocalDateTime.now();
+        Receipt receipt = new Receipt(time, order, order.getPrice());
+        return receipt;
+    }
+
 }

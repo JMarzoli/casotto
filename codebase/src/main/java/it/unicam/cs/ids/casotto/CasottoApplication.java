@@ -366,11 +366,11 @@ public class CasottoApplication {
 	}
 
 	/**
-	 * This method represents the use case Visualizza Attività in Programma
-	 * @return
+	 * This method represents the use case Visualizza Attività in Programmag
 	 */
 	public void ssdVisualizzaPostazioniStruttura(LocationRepository locationRepository) {
 		this.locationManager = new LocationManager(locationRepository);
+		System.out.println("Le postazioni presenti nella struttura sono: ");
 		System.out.println(this.locationManager.getAllLocations());
 	}
 
@@ -385,7 +385,7 @@ public class CasottoApplication {
 	/**
 	 * This method contains the behavior of the Modifica Fattore di Prezzo use case
 	 */
-	public void sssModificaFattoreDiPrezzo(LocationRepository locationRepository) {
+	public void ssdModificaFattoreDiPrezzo(LocationRepository locationRepository) {
 		this.locationManager = new LocationManager(locationRepository);
 		System.out.println("Selezionare il numero della postazione di cui si vuole modificare il fattore di prezzo");
 		int i = 1;
@@ -424,12 +424,43 @@ public class CasottoApplication {
 		System.out.println("Inserire la nuova descrizione, o premere invio per non modificarla");
 		String newDes = scanner.nextLine();
 		//effects the changes
-		if(newType == null) { newType = beach.getSandType();}
-		if(newDes == null) {newDes = beach.getDescription();}
+		if(newType == null) { newType = beach.getSandType(); }
+		if(newDes == null) { newDes = beach.getDescription(); }
 		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes);
 		System.out.println("Le modifiche sono state effettuate con successo");
 	}
 
 	//TODO wip
-	public void ssdPrendeInCaricoOrdine(){}
+	public void ssdPrendeInCaricoOrdine(){
+		//retriving the non completed orders
+		List<Order> nonCompletedOrders = this.barController.getNonCompletedOrder();
+		//if all orders are already satisfied
+		if(nonCompletedOrders.isEmpty()) {
+			System.out.println("Non ci sono ordini non completati nel sistema");
+			return;
+		}
+		//there are some orders to be completed
+		System.out.println("Gli ordini che risultano ancora non completati sono:");
+		int i = 1;
+		for(Order o : nonCompletedOrders) {
+			System.out.println(i + ") id: " + o.getId() + "che contiene i prodotti " + o.getProducts());
+			i++;
+		}
+		System.out.print("Inserire il numero dell'ordine che si vuole soddisfare");
+		Integer choice = scanner.nextInt();
+		//valid input
+		if(choice < i || choice > 1) {
+			Order order = nonCompletedOrders.get(choice - 1);
+			System.out.println("Si è scelto l'ordine: ");
+			this.barController.createRecipt(order);
+			System.out.println("Stampa scontino in corso...");
+			this.ssdStampaScontrino(order);
+			this.barController.setOrderAsCompleted(order.getId());
+			System.out.println("Il sistema ha segnato l'ordine come completato correttamente");
+		} else {
+			//invalid input
+			System.out.println("Immesso un indice di ordine sbagliato");
+		}
+	}
+
 }
