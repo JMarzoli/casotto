@@ -18,9 +18,9 @@ import java.util.*;
 @EnableScheduling
 public class CasottoApplication {
 
-	private ReservationManager reservationManager;
-
 	private LocationManager locationManager;
+
+	private ReservationManager reservationManager;
 
 	private CustomerManager customerManager;
 
@@ -43,8 +43,17 @@ public class CasottoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository, JavaMailSender javaMailSender, ProductRepository productRepository, OrderRepository orderRepository) {
+	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository
+			, JavaMailSender javaMailSender, ProductRepository productRepository, OrderRepository orderRepository,
+			ReservationRepository reservationRepository, LocationRepository locationRepository, BeachRepository beachRepository) {
 		return args -> {
+			this.locationManager = new LocationManager(locationRepository);
+			this.reservationManager = new ReservationManager(reservationRepository, locationManager);
+			this.customerManager = new CustomerManager(customerRepository);
+			this.activityManager = new ActivityManager(activityRepository, customerRepository);
+			this.barController = new BarController(productRepository, orderRepository);
+			this.beachManager = new BeachManager(beachRepository);
+			this.ssdVisualizzaStoricoOrdini();
 			System.out.println("Benvenuto in Casotto!");
 			System.out.println("Seleziona il tipo di account con cui accedere: ");
 			System.out.println("1) Account Gestore struttura ");
@@ -69,15 +78,21 @@ public class CasottoApplication {
 				} while (sceltaGestore < 1 || sceltaGestore > 5);
 				switch (sceltaGestore) {
 					case 1 :
-						//this.ssdModificaFattoreDiPrezzo(); TODO decommentare metodo e aggiungere il parametro
+						this.ssdModificaFattoreDiPrezzo();
+						break;
 					case 2 :
-						//this.ssdModificaStrutturaSpiaggia(); TODO come sopra
+						this.ssdModificaStrutturaSpiaggia();
+						break;
 					case 3 :
 						// TODO implementare metodo del caso d'uso Modifica Attrezzature Ludico Sportive
+						break;
 					case 4 :
 						this.ssdModificaAttività();
+						break;
 					case 5 :
-						//this.ssdNotificaClienti(); TODO decommentare a aggiungere parametri al metodo
+						this.ssdNotificaClienti(javaMailSender);
+						break;
+					default : System.out.println("Scelta non corretta");
 				}
 			// login da Cliente
 			} else if (sceltaAccount == 2) {
@@ -95,10 +110,14 @@ public class CasottoApplication {
 				switch (sceltaCliente) {
 					case 1:
 						this.ssdEffettuaPrenotazione(customer);
+						break;
 					case 2:
-						//this.ssdPrenotaAttivita(); TODO decommentare metodo e aggiugnere parametri
+						this.ssdPrenotaAttivita();
+						break;
 					case 3:
 						this.ssdAcquistaProdotti(customer.getId());
+						break;
+					default: System.out.println("Scelta non corretta");
 				}
 			// servizi riservati al personale struttura
 			} else if (sceltaAccount == 3) {
@@ -112,9 +131,11 @@ public class CasottoApplication {
 				} while (sceltaPersonale < 1 || sceltaPersonale > 2);
 				switch (sceltaPersonale) {
 					case 1 :
-						//this.ssdVisualizzaStoricoOrdini(); // TODO decommentare e aggiungere parametri
+						this.ssdVisualizzaStoricoOrdini();
+						break;
 					case 2 :
 						this.ssdPrendeInCaricoOrdine();
+						break;
 				}
 			// utente non Loggato
 			} else if (sceltaAccount == 4) {
@@ -135,8 +156,7 @@ public class CasottoApplication {
 		};
 	}
 
-	private void ssdPrenotaAttivita(ActivityRepository activityRepository, CustomerRepository customerRepository) {
-		this.activityManager = new ActivityManager(activityRepository, customerRepository);
+	private void ssdPrenotaAttivita() {
 		List<Activity> activityList = this.activityManager.getAllActivities();
 		if (activityList.isEmpty()) {
 			System.out.println("Nessuna attività presente, ci dispiace");
@@ -184,12 +204,12 @@ public class CasottoApplication {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		boolean repeat = true;
 		while(repeat) {
-			System.out.println("Per favore inserisci la data inziale per la prenotazione: dd/MM/yyyy");
+			System.out.println("Per favore inserisci la data iniziale per la prenotazione: dd/MM/yyyy");
 			LocalDate reservationStartDate = LocalDate.parse(scanner.nextLine(), formatter);
 			System.out.println("Per favore inserisci la data finale per la prenotazione: dd/MM/yyyy");
 			LocalDate reservationEndDate = LocalDate.parse(scanner.nextLine(), formatter);
 			int scelta;
-			List<Location> availableLocations = this.reservationManager.getAvailableLocationsOnADate(reservationStartDate,reservationEndDate);
+			List<Location> availableLocations = this.reservationManager.getAvailableLocationsOnADate(reservationStartDate, reservationEndDate);
 			if (!availableLocations.isEmpty()) {
 				System.out.println("Ecco le postazioni disponibili per il periodo tra " + reservationStartDate +" e " + reservationEndDate + "\n");
 				for(scelta = 0; scelta < availableLocations.size(); ++scelta) {
@@ -356,11 +376,10 @@ public class CasottoApplication {
 
 	}
 
-	/**
+/*	*//**
 	 * This method represent th Use Case: Prende in carico ordine, where the worker wants to take charge of an order.
-	 */
-	public void ssdPrendeInCaricoOrdine(ProductRepository productRepository, OrderRepository orderRepository){
-		this.barController = new BarController(productRepository, orderRepository);
+	 *//*
+	public void ssdPrendeInCaricoOrdine() {
 		System.out.println("Ecco la lista degli ordini ancora da soddisfare: ");
 		List<Order> orders = this.barController.getAllOrders();
 		int scelta;
@@ -375,17 +394,14 @@ public class CasottoApplication {
 		ssdStampaScontrino(order);
 	}
 	public void UC_NotificaTerminaliPresenzaOrdini(ProductRepository productRepository, OrderRepository orderRepository){
-		this.barController = new BarController(productRepository, orderRepository);
 		List<Order> orders = this.barController.getAllOrders();
 		if (!orders.isEmpty()){
 			System.out.println("Ci sono ancora ordini da soddisfare!");
 		}
-	}
+	}*/ //?????
 
-	public void ssdNotificaClienti(CustomerRepository customerRepository, ActivityRepository activityRepository, JavaMailSender javaMailSender) {
+	public void ssdNotificaClienti(JavaMailSender javaMailSender) {
 		NotificationManager notificationManager = new NotificationManager(javaMailSender);
-		ActivityManager activityManager = new ActivityManager(activityRepository, customerRepository);
-		CustomerManager customerManager = new CustomerManager(customerRepository);
 		System.out.println("Scegli la categoria di notifica che vuoi inviare:");
 		System.out.println("1: Inviare il programma di un'attività.\n");
 		System.out.println("2: Inviare una promozione.\n");
@@ -413,9 +429,13 @@ public class CasottoApplication {
 		}
 	}
 
-	public void ssdVisualizzaStoricoOrdini(ProductRepository productRepository, OrderRepository orderRepository) {
-		BarController barController = new BarController(productRepository, orderRepository);
-		barController.getAllOrders().forEach(System.out::println);
+	public void ssdVisualizzaStoricoOrdini() {
+		List<Order> orderList = this.barController.getAllOrders();
+		if (orderList.isEmpty()) {
+			System.out.println("Nessun ordine presente");
+		} else {
+			orderList.forEach(System.out::println);
+		}
 	}
 
 	public void ssdStampaScontrino(Order order) {
@@ -438,8 +458,7 @@ public class CasottoApplication {
 	/**
 	 * This method represents the use case Visualizza Attività in Programmag
 	 */
-	public void ssdVisualizzaPostazioniStruttura(LocationRepository locationRepository) {
-		this.locationManager = new LocationManager(locationRepository);
+	public void ssdVisualizzaPostazioniStruttura() {
 		System.out.println("Le postazioni presenti nella struttura sono: ");
 		System.out.println(this.locationManager.getAllLocations());
 	}
@@ -447,16 +466,14 @@ public class CasottoApplication {
 	/**
 	 * This method contains the behavior of the Visualizza Attività in Programma usa case
 	 */
-	public void ssdVisualizzaAttivitàInProgramma(ActivityRepository activityRepository, CustomerRepository customerRepository) {
-		this.activityManager = new ActivityManager(activityRepository, customerRepository);
-		System.out.println(activityManager.getAllActivities());
+	public void ssdVisualizzaAttivitàInProgramma() {
+		System.out.println(this.activityManager.getAllActivities());
 	}
 
 	/**
 	 * This method contains the behavior of the Modifica Fattore di Prezzo use case
 	 */
-	public void ssdModificaFattoreDiPrezzo(LocationRepository locationRepository) {
-		this.locationManager = new LocationManager(locationRepository);
+	public void ssdModificaFattoreDiPrezzo() {
 		System.out.println("Selezionare il numero della postazione di cui si vuole modificare il fattore di prezzo");
 		int i = 1;
 		//asking for the location that should be modified
@@ -483,8 +500,7 @@ public class CasottoApplication {
 		System.out.println("Modifica avvenuta con successo");
 	}
 
-	public void ssdModificaStrutturaSpiaggia(BeachRepository beachRepository) {
-		this.beachManager = new BeachManager(beachRepository);
+	public void ssdModificaStrutturaSpiaggia() {
 		//asking for the sand type
 		System.out.println("La spiaggia ha come tipo di sabbia: " + beach.getSandType());
 		System.out.println("Inserire il nuovo tipo di sabbia, o premere invio per non modificarlo");

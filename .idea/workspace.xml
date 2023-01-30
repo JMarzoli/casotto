@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77490d4a-55c3-4eea-a8ec-ec3673700a0c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +88,7 @@
       <workItem from="1674845129219" duration="84000" />
       <workItem from="1674896560830" duration="8903000" />
       <workItem from="1674922951284" duration="1722000" />
+      <workItem from="1675109599295" duration="1619000" />
     </task>
     <servers />
   </component>
