@@ -31,6 +31,13 @@ public class BeachChair implements IBeachChair {
     @JoinColumn(name = "LOCATION_ID")
     private Location location;
 
+    public BeachChair(String material, int length, double width, double price) {
+        this.material = material;
+        this.length = length;
+        this.width = width;
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

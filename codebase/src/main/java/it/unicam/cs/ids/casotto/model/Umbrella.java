@@ -27,6 +27,12 @@ public class Umbrella implements IUmbrella {
     @JoinColumn(name = "LOCATION_ID")
     private Location location;
 
+    public Umbrella(int diameter, String material, int price) {
+        this.material = material;
+        this.diameter = diameter;
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Ombrello{" +

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -46,7 +47,9 @@ public class Activity implements IActivity {
         this.info = info;
         this.activityBeginDate = dataInizio;
         this.activityEndDate = dataFine;
+        this.currentNumberOfPeople = 0;
         this.maxNumberOfPeople = -1;
+        customersInThisActivity = new ArrayList<>();
     }
 
     public Activity(String info, LocalDate dataInizio, LocalDate dataFine, int numPartecipanti) {
@@ -54,6 +57,8 @@ public class Activity implements IActivity {
         this.activityBeginDate = dataInizio;
         this.activityEndDate = dataFine;
         this.maxNumberOfPeople = numPartecipanti;
+        this.currentNumberOfPeople = 0;
+        customersInThisActivity = new ArrayList<>();
     }
 
     @Override

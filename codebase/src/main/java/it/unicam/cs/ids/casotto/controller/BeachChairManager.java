@@ -5,6 +5,7 @@ import it.unicam.cs.ids.casotto.repository.BeachChairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +42,13 @@ public class BeachChairManager {
             beachChair.setPrice(price);
         }
         this.beachChairRepository.save(beachChair);
+    }
+
+    public void saveBeachChair(String material, int length, double width, double price) {
+        beachChairRepository.save(new BeachChair(material,length,width,price));
+    }
+
+    public List<BeachChair> getAllBeachChairs() {
+        return beachChairRepository.findAll();
     }
 }

@@ -18,7 +18,7 @@ public class Reservation implements IReservation {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reservation_id")
     @SequenceGenerator(name = "reservation_id", sequenceName = "reservation_id", allocationSize = 1)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.MERGE},fetch= FetchType.EAGER)
     @JoinTable(
             name = "RESERVED_CUSTOMER",
             joinColumns = @JoinColumn(name = "RESERVATION_ID"),
@@ -30,7 +30,7 @@ public class Reservation implements IReservation {
     private LocalDate reservationBeginDate;
     @Column
     private LocalDate reservationEndDate;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.MERGE},fetch= FetchType.EAGER)
     @JoinTable(
             name = "RESERVED_LOCATION",
             joinColumns = @JoinColumn(name = "RESERVATION_ID"),

@@ -5,6 +5,7 @@ import it.unicam.cs.ids.casotto.repository.UmbrellaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +39,13 @@ public class UmbrellaManager {
             umbrella.setPrice(price);
         }
         this.umbrellaRepository.save(umbrella);
+    }
+
+    public void saveUmbrella(int diameter, String material, int price) {
+        this.umbrellaRepository.save(new Umbrella(diameter,material,price));
+    }
+
+    public List<Umbrella> getAllUmbrellas() {
+        return umbrellaRepository.findAll();
     }
 }

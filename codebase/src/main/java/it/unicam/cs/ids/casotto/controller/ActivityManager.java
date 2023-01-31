@@ -42,9 +42,7 @@ public class ActivityManager {
     }
 
     public void updateActivity(Activity updatedActivity) {
-        if (this.activityRepository.findById(updatedActivity.getId()).isPresent()) {
-            this.activityRepository.save(updatedActivity);
-        }
+        this.activityRepository.save(updatedActivity);
     }
 
     public void deleteActivity(Long id) {

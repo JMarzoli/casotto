@@ -19,22 +19,18 @@ import java.util.stream.Collectors;
 public class ReservationManager {
     private final ReservationRepository reservationRepository;
     private final LocationManager locationManager;
-    private Customer customer;
-    private LocalDate startDate, endDate, reservationDate;
+    private final CustomerManager customerManager;
 
     @Autowired
-    public ReservationManager(ReservationRepository reservationRepository, LocationManager locationManager) {
+    public ReservationManager(ReservationRepository reservationRepository, LocationManager locationManager,CustomerManager customerManager) {
         this.reservationRepository = reservationRepository;
         this.locationManager = locationManager;
+        this.customerManager = customerManager;
     }
 
-    public void makeReservation(Customer customer, Location location, LocalDate startDate, LocalDate endDate, double reservationPrice) {
-        this.reservationDate = LocalDate.now();
-        reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, location, reservationPrice));
-    }
-
-    public void createReservation(Location locationReserved, double reservationPrice) {
-        reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, locationReserved, reservationPrice));
+    public void makeReservation(Customer customer, Long location, LocalDate startDate, LocalDate endDate, double reservationPrice) {
+        LocalDate reservationDate = LocalDate.now();
+        reservationRepository.save(new Reservation(customer, reservationDate, startDate, endDate, locationManager.findById(location).orElse(null), reservationPrice));
     }
 
     /**
@@ -72,7 +68,7 @@ public class ReservationManager {
      * @return the price discounted.
      */
     public double applyDiscountCode(Double price, DiscountCode discountCode) {
-        return price;
+        return price/2;
     }
 
     /**
@@ -104,14 +100,16 @@ public class ReservationManager {
                 .filter(reserved -> reserved.getReservationBeginDate().isBefore(reservationEndDate)&&reserved.getReservationEndDate().isAfter(reservationStartDate))
                 .map(Reservation::getLocationReserved)
                 .toList();
-        return locationManager.getAllLocations()
-                .stream()
-                .filter(l-> !locationsAlreadyOccupied.contains(l))
-                .collect(Collectors.toList());
+        List<Location> locations = locationManager.getAllLocations();
+        locations.removeAll(locationsAlreadyOccupied);
+        return locations;
     }
 
     public boolean checkDiscountCode(DiscountCode discountCode) {
         return true;
     }
 
+    public List<Reservation> getAllReservation() {
+        return reservationRepository.findAll();
+    }
 }

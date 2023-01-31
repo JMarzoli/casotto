@@ -79,4 +79,7 @@ public class BarController {
         return receipt;
     }
 
+    public void createProduct(String name, String desc, double price, int quantity) {
+        productRepository.save(new Product(name,price,desc,quantity));
+    }
 }

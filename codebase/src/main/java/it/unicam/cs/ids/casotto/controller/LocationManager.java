@@ -43,12 +43,14 @@ public class LocationManager {
 
     public double getTotalPrice(Long locationId) {
         Optional<Location> loc = locationRepository.findById(locationId);
-        double totalCost = 0;
-        for (Umbrella u: loc.get().getUmbrellas()) {
-            totalCost += u.getPrice();
-        }
-        for (BeachChair b: loc.get().getBeachChairs()) {
-            totalCost += b.getPrice();
+        double totalCost = 100;
+        if(loc.isPresent()) {
+            for (Umbrella u : loc.get().getUmbrellas()) {
+                totalCost += u.getPrice();
+            }
+            for (BeachChair b : loc.get().getBeachChairs()) {
+                totalCost += b.getPrice();
+            }
         }
         return totalCost;
     }
@@ -63,6 +65,10 @@ public class LocationManager {
     }
 
     public Location findByQrCode(String qrcode) {
-        return new Location();
+        return this.locationRepository.findAll().stream().filter(l->l.getQrCode().equals(qrcode)).findFirst().orElse(null);
+    }
+
+    public void saveLocation(String desc,List<Umbrella> umbrellas, List<BeachChair> beachSeats, String qrCode) {
+        this.locationRepository.save(new Location(desc,umbrellas, beachSeats, qrCode));
     }
 }
