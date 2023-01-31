@@ -59,7 +59,7 @@ public class CasottoApplication {
 			this.umbrellaManager = new UmbrellaManager(umbrellaRepository);
 			this.beachChairManager = new BeachChairManager(beachChairRepository);
 			databasePopulation();
-			this.ssdVisualizzaStoricoOrdini();
+			this.ssdVisualizzaStoricoOrdini(); //DIMENTICATO?
 			System.out.println("Benvenuto in Casotto!");
 			System.out.println("Seleziona il tipo di account con cui accedere: ");
 			System.out.println("1) Account Gestore struttura ");
@@ -185,6 +185,7 @@ public class CasottoApplication {
 		barController.createProduct("PANINO","PANINO",3.50,5);
 		barController.createProduct("PIZZA","PIZZA",6.50,5);
 		barController.createProduct("COCA COLA","COCA COLA",2.50,15);
+		barController.createNewOrder(barController.getProducts());
 	}
 	private void ssdPrenotaAttivita() {
 		List<Activity> activityList = this.activityManager.getAllActivities();
