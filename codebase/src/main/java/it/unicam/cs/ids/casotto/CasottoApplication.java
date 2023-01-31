@@ -40,6 +40,10 @@ public class CasottoApplication {
 
 	private int stampeRimaste = 5;
 
+	public CasottoApplication() {
+		this.beach = new Beach();
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoApplication.class, args);
 	}
@@ -516,7 +520,10 @@ public class CasottoApplication {
 	 * This method represents the use case Visualizza Catalogo Servizi
 	 */
 	public void ssdVisualizzaCatalogoServizi(){
-		System.out.println("SERVIZI DISPONIBILI IN QUESTO STABILIMENTO" + List.of("SERVIZIO BAR", "SERVIZIO BALNEARE CON PRENOTAZIONE DI OMBRELLONI E LETTINI", "ATTIVITA' ALL'APERTO"));
+		System.out.println("Lo stabilimento offre i seguenti servizi:");
+		System.out.println("- Prenotazione di postazioni tramite il sistema");
+		System.out.println("- Prenotazione delle attività ludiche che si tengono quotidinamente nella spiaggia");
+		System.out.println("- Possibilità di effettuare ordinazione nel bar della struttura comodamente dal proprio ombrellone");
 	}
 
 	/**
@@ -542,7 +549,7 @@ public class CasottoApplication {
 		int i = 1;
 		//asking for the location that should be modified
 		for (Location l: this.locationManager.getAllLocations()) {
-			System.out.println("Postazione numero: " + i++ + l.getId());
+			System.out.println("Postazione numero: " + i++ + ") " + l.getId());
 		}
 		Scanner in = new Scanner(System.in);
 		int locNumber = in.nextInt() - 1;
@@ -576,11 +583,10 @@ public class CasottoApplication {
 		//effects the changes
 		if(newType == null) { newType = beach.getSandType(); }
 		if(newDes == null) { newDes = beach.getDescription(); }
-		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes);
+		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes); //TODO il metodo updateModifyBeach dà errore
 		System.out.println("Le modifiche sono state effettuate con successo");
 	}
 
-	//TODO wip
 	public void ssdPrendeInCaricoOrdine(){
 		//retriving the non completed orders
 		List<Order> nonCompletedOrders = this.barController.getNonCompletedOrder();
@@ -593,10 +599,10 @@ public class CasottoApplication {
 		System.out.println("Gli ordini che risultano ancora non completati sono:");
 		int i = 1;
 		for(Order o : nonCompletedOrders) {
-			System.out.println(i + ") id: " + o.getId() + "che contiene i prodotti " + o.getProducts());
+			System.out.println(i + ") id: " + o.getId() + " |che contiene i prodotti: " + o.getProducts());
 			i++;
 		}
-		System.out.print("Inserire il numero dell'ordine che si vuole soddisfare");
+		System.out.println("Inserire il numero dell'ordine che si vuole soddisfare");
 		Integer choice = scanner.nextInt();
 		//valid input
 		if(choice < i || choice > 1) {
@@ -605,7 +611,7 @@ public class CasottoApplication {
 			this.barController.createRecipt(order);
 			System.out.println("Stampa scontino in corso...");
 			this.ssdStampaScontrino(order);
-			this.barController.setOrderAsCompleted(order.getId());
+			this.barController.setOrderAsCompleted(order.getId()); //TODO il metodo setOrderAsCompleted dà errore
 			System.out.println("Il sistema ha segnato l'ordine come completato correttamente");
 		} else {
 			//invalid input
