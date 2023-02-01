@@ -61,11 +61,12 @@ public class BarController {
         this.orderRepository.save(order);
     }
 
-    public Order setOrderAsCompleted(Long orderId) {
-        Order order = this.orderRepository.getReferenceById(orderId);
+    public void setOrderAsCompleted(Long orderId) {
+        Order order = this.orderRepository.findById(orderId).orElse(null);
+        assert order != null;
         order.setHasBeenCompleted(true);
+        System.out.println("asdasd:   "+order);
         this.orderRepository.save(order);
-        return order;
     }
 
     /**

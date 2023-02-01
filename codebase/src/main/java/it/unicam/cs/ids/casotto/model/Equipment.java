@@ -25,12 +25,26 @@ public class Equipment implements IEquipment {
     @Column
     private String description;
 
+    public Equipment(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Equipment equipment = (Equipment) o;
         return id.equals(equipment.id) && name.equals(equipment.name) && description.equals(equipment.description);
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     @Override

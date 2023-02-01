@@ -29,6 +29,7 @@ public class CasottoApplication {
 	private BarController barController;
 	private UmbrellaManager umbrellaManager;
 	private BeachChairManager beachChairManager;
+	private EquipmentManager equipmentManager;
 
 	private Beach beach;
 
@@ -52,7 +53,7 @@ public class CasottoApplication {
 	public CommandLineRunner demo(ActivityRepository activityRepository, CustomerRepository customerRepository
 			, JavaMailSender javaMailSender, ProductRepository productRepository, OrderRepository orderRepository,
 			ReservationRepository reservationRepository, LocationRepository locationRepository, BeachRepository beachRepository,
-								  UmbrellaRepository umbrellaRepository, BeachChairRepository beachChairRepository) {
+								  UmbrellaRepository umbrellaRepository, BeachChairRepository beachChairRepository, EquipmentRepository equipmentRepository) {
 		return args -> {
 			this.locationManager = new LocationManager(locationRepository);
 			this.reservationManager = new ReservationManager(reservationRepository, locationManager,customerManager);
@@ -62,112 +63,150 @@ public class CasottoApplication {
 			this.beachManager = new BeachManager(beachRepository);
 			this.umbrellaManager = new UmbrellaManager(umbrellaRepository);
 			this.beachChairManager = new BeachChairManager(beachChairRepository);
+			this.equipmentManager = new EquipmentManager(equipmentRepository);
 			databasePopulation();
 			this.ssdVisualizzaStoricoOrdini(); //DIMENTICATO?
-			System.out.println("Benvenuto in Casotto!");
-			System.out.println("Seleziona il tipo di account con cui accedere: ");
-			System.out.println("1) Account Gestore struttura ");
-			System.out.println("2) Account Cliente struttura ");
-			System.out.println("3) Servizi riservati al personale della struttura ");
-			System.out.println("4) Utente non autenticato");
-			int sceltaAccount = scanner.nextInt();
-			// Login da Gestore
-			if(sceltaAccount == 1){
-				System.out.println("Benvenuto Gestore!");
-				Manager manager = new Manager();
-				System.out.println("Selezionare l'azione che si desidera effettuare: ");
-				System.out.println("1 - Modificare i fattori di prezzo di una postazione");
-				System.out.println("2 - Modificare la struttura della spiaggia");
-				System.out.println("3 - Modificare le attrezzature ludico sportive della spiaggia");
-				System.out.println("4 - Modificare le attività in programma");
-				System.out.println("5 - Inviare una notifica ai clienti");
-				int sceltaGestore;
-				do {
-					System.out.println("Inserire la scelta (da 1 a 6): ");
-					sceltaGestore = scanner.nextInt();
-				} while (sceltaGestore < 1 || sceltaGestore > 5);
-				switch (sceltaGestore) {
-					case 1 :
-						this.ssdModificaFattoreDiPrezzo();
-						break;
-					case 2 :
-						this.ssdModificaStrutturaSpiaggia();
-						break;
-					case 3 :
-						// TODO implementare metodo del caso d'uso Modifica Attrezzature Ludico Sportive
-						break;
-					case 4 :
-						this.ssdModificaAttivita();
-						break;
-					case 5 :
-						this.ssdNotificaClienti(javaMailSender);
-						break;
-					default : System.out.println("Scelta non corretta");
+			boolean loopMain = true;
+			while(loopMain) {
+				System.out.println("Benvenuto in Casotto!");
+				System.out.println("Seleziona il tipo di account con cui accedere: ");
+				System.out.println("1) Account Gestore struttura ");
+				System.out.println("2) Account Cliente struttura ");
+				System.out.println("3) Servizi riservati al personale della struttura ");
+				System.out.println("4) Utente non autenticato");
+				System.out.println("Altro per terminare l'applicazione.");
+				boolean loopUseCase = true;
+				int sceltaAccount = scanner.nextInt();
+				// Login da Gestore
+				if (sceltaAccount == 1) {
+					while(loopUseCase) {
+						loopUseCase = true;
+						System.out.println("Benvenuto Gestore!");
+						Manager manager = new Manager();
+						System.out.println("Selezionare l'azione che si desidera effettuare: ");
+						System.out.println("1 - Modificare i fattori di prezzo di una postazione");
+						System.out.println("2 - Modificare la struttura della spiaggia");
+						System.out.println("3 - Modificare le attrezzature ludico sportive della spiaggia");
+						System.out.println("4 - Modificare le attività in programma");
+						System.out.println("5 - Inviare una notifica ai clienti");
+						System.out.println("0 - Per tornare indietro.");
+						int sceltaGestore;
+						do {
+							System.out.println("Inserire la scelta (da 1 a 6): ");
+							sceltaGestore = scanner.nextInt();
+						} while (sceltaGestore < 0 || sceltaGestore > 5);
+						switch (sceltaGestore) {
+							case 1:
+								this.ssdModificaFattoreDiPrezzo();
+								break;
+							case 2:
+								this.ssdModificaStrutturaSpiaggia();
+								break;
+							case 3:
+								ssdModificaAttrezzaturaLudicoSportiva();
+								break;
+							case 4:
+								this.ssdModificaAttivita();
+								break;
+							case 5:
+								this.ssdNotificaClienti(javaMailSender);
+								break;
+							case 0:
+								loopUseCase  =false;
+								break;
+							default:
+								System.out.println("Scelta non corretta");
+						}
+					}
+					// login da Cliente
+				} else if (sceltaAccount == 2) {
+					while(loopUseCase) {
+						loopUseCase = true;
+						System.out.println("Benvenuto Cliente!");
+						Customer customer = customerManager.getAllCustomers().get(0);
+						System.out.println("Selezionare l'azione che si desidera effettuare: ");
+						System.out.println("1 - Prenotare una postazione");
+						System.out.println("2 - Prenotare un'attività");
+						System.out.println("3 - Effetture un'ordinazione al bar");
+						System.out.println("0 - Per tornare indietro.");
+						int sceltaCliente;
+						do {
+							System.out.println("Inserire la scelta (da 1 a 3): ");
+							sceltaCliente = scanner.nextInt();
+						} while (sceltaCliente < 0 || sceltaCliente > 3);
+						switch (sceltaCliente) {
+							case 1:
+								this.ssdEffettuaPrenotazione(customer);
+								break;
+							case 2:
+								this.ssdPrenotaAttivita();
+								break;
+							case 3:
+								this.ssdAcquistaProdotti();
+								break;
+							case 0:
+								loopUseCase=false;
+								break;
+							default:
+								System.out.println("Scelta non corretta");
+						}
+					}
+					// servizi riservati al personale struttura
+				} else if (sceltaAccount == 3) {
+					while(loopUseCase) {
+						loopUseCase = true;
+						System.out.println("Selezionare l'azione che si desidera effettuare: ");
+						System.out.println("1 - Visualizzare lo storico degli ordini");
+						System.out.println("2 - Prendere in carico un'ordine");
+						System.out.println("0 - Per tornare indietro.");
+						int sceltaPersonale;
+						do {
+							System.out.println("Inserire la scelta (da 1 a 2): ");
+							sceltaPersonale = scanner.nextInt();
+						} while (sceltaPersonale < 0 || sceltaPersonale > 2);
+						switch (sceltaPersonale) {
+							case 1:
+								this.ssdVisualizzaStoricoOrdini();
+								break;
+							case 2:
+								this.ssdPrendeInCaricoOrdine();
+								break;
+							case 0:
+								loopUseCase = false;
+								break;
+						}
+					}
+					// utente non Loggato
+				} else if (sceltaAccount == 4) {
+					while(loopUseCase) {
+						loopUseCase = true;
+						System.out.println("Selezionare l'azione che si desidera effettuare: ");
+						System.out.println("1 - Visualizzare il catologo dei servizi");
+						System.out.println("0 - Per tornare indietro.");
+						int sceltaUtenteGenerico;
+						do {
+							System.out.println("Inserire la scelta: ");
+							sceltaUtenteGenerico = scanner.nextInt();
+						} while (sceltaUtenteGenerico<0 || sceltaUtenteGenerico>1);
+						if (sceltaUtenteGenerico == 1) {
+							this.ssdVisualizzaCatalogoServizi();
+						} else {
+							loopUseCase = false;
+						}
+					}
+				} else {
+					System.out.println("Arrivederci.");
+					loopMain  =false;
+					System.exit(1);
 				}
-			// login da Cliente
-			} else if (sceltaAccount == 2) {
-				System.out.println("Benvenuto Cliente!");
-				Customer customer = customerManager.getAllCustomers().get(0);
-				System.out.println("Selezionare l'azione che si desidera effettuare: ");
-				System.out.println("1 - Prenotare una postazione");
-				System.out.println("2 - Prenotare un'attività");
-				System.out.println("3 - Effetture un'ordinazione al bar");
-				int sceltaCliente;
-				do {
-					System.out.println("Inserire la scelta (da 1 a 3): ");
-					sceltaCliente = scanner.nextInt();
-				} while (sceltaCliente < 1 || sceltaCliente > 3);
-				switch (sceltaCliente) {
-					case 1:
-						this.ssdEffettuaPrenotazione(customer);
-						break;
-					case 2:
-						this.ssdPrenotaAttivita();
-						break;
-					case 3:
-						this.ssdAcquistaProdotti();
-						break;
-					default: System.out.println("Scelta non corretta");
-				}
-			// servizi riservati al personale struttura
-			} else if (sceltaAccount == 3) {
-				System.out.println("Selezionare l'azione che si desidera effettuare: ");
-				System.out.println("1 - Visualizzare lo storico degli ordini");
-				System.out.println("2 - Prendere in carico un'ordine");
-				int sceltaPersonale;
-				do {
-					System.out.println("Inserire la scelta (da 1 a 2): ");
-					sceltaPersonale = scanner.nextInt();
-				} while (sceltaPersonale < 1 || sceltaPersonale > 2);
-				switch (sceltaPersonale) {
-					case 1 :
-						this.ssdVisualizzaStoricoOrdini();
-						break;
-					case 2 :
-						this.ssdPrendeInCaricoOrdine();
-						break;
-				}
-			// utente non Loggato
-			} else if (sceltaAccount == 4) {
-				System.out.println("Selezionare l'azione che si desidera effettuare: ");
-				System.out.println("1 - Visualizzare il catologo dei servizi");
-				int sceltaUtenteGenerico;
-				do {
-					System.out.println("Inserire la scelta: ");
-					sceltaUtenteGenerico = scanner.nextInt();
-				} while (sceltaUtenteGenerico != 1);
-				if(sceltaUtenteGenerico == 1) {
-					this.ssdVisualizzaCatalogoServizi();
-				}
-			} else {
-				System.out.println("Scelta non valida");
-				System.exit(1);
 			}
 		};
 	}
 
 	public void databasePopulation(){
-		customerManager.saveCustomer(new Customer("Andrea", "Polini", "prof@gmail.com"));
+		beachManager.saveBeach(new Beach("Sabbia fine", "Lido in via IdS"));
+		this.beach = beachManager.findAllBeaches().get(0);
+		customerManager.saveCustomer(new Customer("LEONARDO", "MAZZOLI", "LEOMAZ@HOTMAIL.IT"));
 		activityManager.saveActivity(new Activity("Info attività 1",LocalDate.of(2023,1,1),LocalDate.of(2023,1,3),-1));
 		activityManager.saveActivity(new Activity("Info attività 2",LocalDate.of(2023,1,5),LocalDate.of(2023,1,6),50));
 		activityManager.saveActivity(new Activity("Info attività 3",LocalDate.of(2023, 1,9),LocalDate.of(2023,1,9),-1));
@@ -190,6 +229,8 @@ public class CasottoApplication {
 		barController.createProduct("PIZZA","PIZZA",6.50,5);
 		barController.createProduct("COCA COLA","COCA COLA",2.50,15);
 		barController.createNewOrder(barController.getProducts());
+		equipmentManager.saveEquipment(new Equipment("Attrezzatura 1", "Ludico"));
+		equipmentManager.saveEquipment(new Equipment("Attrezzatura 2", "Sportiva"));
 	}
 	private void ssdPrenotaAttivita() {
 		List<Activity> activityList = this.activityManager.getAllActivities();
@@ -461,6 +502,26 @@ public class CasottoApplication {
 		}
 
 	}
+	public void ssdModificaAttrezzaturaLudicoSportiva(){
+		System.out.println("Ecco tutte le attrezzature ludico/sportive attualmente presenti in struttura: ");
+		List<Equipment> equipments = equipmentManager.getAllEquipments();
+		if(!equipments.isEmpty()) {
+			equipments.forEach(e-> System.out.println(e.toString()));
+			System.out.println("Seleziona l'attrezzatura da modificare: ");
+			int scelta = scanner.nextInt()-1;
+			while(scelta<0 || scelta>=equipmentManager.getAllEquipments().size()){
+				System.out.println("Numero del prodotto non valido... \n Inseriscine un'altro: ");
+				scelta = scanner.nextInt()-1;
+			}
+			System.out.println("Inserisci la nuova descrizione: ");
+			String desc = scanner.next();
+			Equipment newEq = equipments.get(scelta);
+			newEq.setDescription(desc);
+			equipmentManager.saveEquipment(newEq);
+			System.out.println("modifica effettuata con successo!");
+			System.out.println(equipmentManager.getAllEquipments().get(0).getDescription());
+		} else System.out.println("Non sono presenti attrezzature in struttura...");
+	}
 
 	public void ssdNotificaTerminaliPresenzaOrdini(){
 		List<Order> orders = this.barController.getAllOrders();
@@ -473,7 +534,7 @@ public class CasottoApplication {
 		System.out.println("Scegli la categoria di notifica che vuoi inviare:");
 		System.out.println("1: Inviare il programma di un'attività.\n");
 		System.out.println("2: Inviare una promozione.\n");
-		switch (Integer.parseInt(scanner.nextLine())) {
+		switch (Integer.parseInt(scanner.next())) {
 			case 1 -> {
 				List<Activity> activityList = activityManager.getAllActivities();
 				System.out.println("Scegli l'attività per inviare il programma, usando il numero");
@@ -489,7 +550,7 @@ public class CasottoApplication {
 			}
 			case 2 -> {
 				System.out.println("Inserisci il testo della promozione");
-				String promozione = scanner.nextLine();
+				String promozione = scanner.next();
 				customerManager.getAllCustomers().forEach(customer ->
 						notificationManager.sendSimpleMessage(customer.getEmail(), "Nuova Promozione!", promozione));
 			}
@@ -575,11 +636,11 @@ public class CasottoApplication {
 		//asking for the sand type
 		System.out.println("La spiaggia ha come tipo di sabbia: " + beach.getSandType());
 		System.out.println("Inserire il nuovo tipo di sabbia, o premere invio per non modificarlo");
-		String newType = scanner.nextLine();
+		String newType = scanner.next();
 		//asking for the description
 		System.out.println("La descrizione della spiaggia è: " + beach.getDescription());
 		System.out.println("Inserire la nuova descrizione, o premere invio per non modificarla");
-		String newDes = scanner.nextLine();
+		String newDes = scanner.next();
 		//effects the changes
 		if(newType == null) { newType = beach.getSandType(); }
 		if(newDes == null) { newDes = beach.getDescription(); }
@@ -603,7 +664,7 @@ public class CasottoApplication {
 			i++;
 		}
 		System.out.println("Inserire il numero dell'ordine che si vuole soddisfare");
-		Integer choice = scanner.nextInt();
+		int choice = scanner.nextInt();
 		//valid input
 		if(choice < i || choice > 1) {
 			Order order = nonCompletedOrders.get(choice - 1);

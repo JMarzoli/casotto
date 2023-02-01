@@ -41,4 +41,8 @@ public class EquipmentManager {
         }
         this.equipmentRepository.save(equipment);
     }
+
+    public List<Equipment> getAllEquipments() {
+        return equipmentRepository.findAll();
+    }
 }

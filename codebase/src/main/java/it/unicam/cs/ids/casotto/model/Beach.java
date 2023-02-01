@@ -25,6 +25,11 @@ public class Beach implements IBeach {
     @Column
     private String description;
 
+    public Beach(String sandType, String description) {
+        this.sandType = sandType;
+        this.description  = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
