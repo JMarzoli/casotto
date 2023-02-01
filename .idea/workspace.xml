@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77490d4a-55c3-4eea-a8ec-ec3673700a0c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/643edbeca41c809c17517bff1b843bfb497eb12e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6db5d617-2909-40ed-ace2-fbafa37a4e13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6db5d617-2909-40ed-ace2-fbafa37a4e13.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/demo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/demo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/CasottoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/model/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/model/Receipt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/BarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/LocationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/src/main/java/it/unicam/cs/ids/casotto/controller/LocationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/CasottoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/target/classes/it/unicam/cs/ids/casotto/controller/BarController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +59,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "37408f5f19ab0f1fb5ee4d2a1e98325f",
     "vue.rearranger.settings.migration": "true"
@@ -102,6 +105,8 @@
       <workItem from="1675109599295" duration="1619000" />
       <workItem from="1675182644772" duration="666000" />
       <workItem from="1675183840657" duration="3365000" />
+      <workItem from="1675255954725" duration="105000" />
+      <workItem from="1675257721877" duration="8222000" />
     </task>
     <servers />
   </component>

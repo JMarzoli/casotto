@@ -55,7 +55,7 @@ public class CasottoApplication {
 			ReservationRepository reservationRepository, LocationRepository locationRepository, BeachRepository beachRepository,
 								  UmbrellaRepository umbrellaRepository, BeachChairRepository beachChairRepository, EquipmentRepository equipmentRepository) {
 		return args -> {
-			this.locationManager = new LocationManager(locationRepository);
+			this.locationManager = new LocationManager(locationRepository, umbrellaRepository, beachChairRepository);
 			this.reservationManager = new ReservationManager(reservationRepository, locationManager,customerManager);
 			this.customerManager = new CustomerManager(customerRepository);
 			this.activityManager = new ActivityManager(activityRepository, customerRepository);
@@ -65,7 +65,6 @@ public class CasottoApplication {
 			this.beachChairManager = new BeachChairManager(beachChairRepository);
 			this.equipmentManager = new EquipmentManager(equipmentRepository);
 			databasePopulation();
-			this.ssdVisualizzaStoricoOrdini(); //DIMENTICATO?
 			boolean loopMain = true;
 			while(loopMain) {
 				System.out.println("Benvenuto in Casotto!");
@@ -74,7 +73,7 @@ public class CasottoApplication {
 				System.out.println("2) Account Cliente struttura ");
 				System.out.println("3) Servizi riservati al personale della struttura ");
 				System.out.println("4) Utente non autenticato");
-				System.out.println("Altro per terminare l'applicazione.");
+				System.out.println("0) Per terminare l'applicazione.");
 				boolean loopUseCase = true;
 				int sceltaAccount = scanner.nextInt();
 				// Login da Gestore
@@ -226,7 +225,7 @@ public class CasottoApplication {
 		locationManager.saveLocation("Location 4",List.of(umbrellas.get(3)),List.of(beachChairs.get(3)),"qr4");
 		barController.createProduct("SUCCO","SUCCO",2.50,10);
 		barController.createProduct("PANINO","PANINO",3.50,5);
-		barController.createProduct("PIZZA","PIZZA",6.50,5);
+		barController.createProduct("PIZZA","PIZZA",6.50,1);
 		barController.createProduct("COCA COLA","COCA COLA",2.50,15);
 		barController.createNewOrder(barController.getProducts());
 		equipmentManager.saveEquipment(new Equipment("Attrezzatura 1", "Ludico"));
@@ -325,7 +324,6 @@ public class CasottoApplication {
 				}
 				System.out.println("Inizio procedura di pagamento...");
 				ssdElaboraPagamento(this.locationManager.getTotalPrice(choice.getId()));
-
 				reservationManager.makeReservation(customer, choice.getId(), reservationStartDate, reservationEndDate, totale);
 				System.out.println("Prenotazione effettuata con successo!");
 				repeat = false;
@@ -360,9 +358,10 @@ public class CasottoApplication {
 		switch (scelta){
 			case 1: {
 				System.out.println("Hai scelto di inserire un'attività.");
-				System.out.println("Inserisci le info dell'attività: ");
+				System.out.println("Inserisci le info dell'attività:");
 				String info = scanner.next();
 				System.out.println("Inserisci la data di inizio dell'attività: (dd/MM/yyyy)");
+				scanner.nextLine();
 				String dataInizio = scanner.next();
 				System.out.println("Inserisci la data di fine dell'attività: (dd/MM/yyyy)");
 				String dataFine = scanner.next();
@@ -384,7 +383,7 @@ public class CasottoApplication {
 				}
 				this.activityManager.deleteActivity(this.activityManager.getAllActivities().get(scelta).getId());
 				System.out.println("Hai eliminato con successo l'attività selezionata!");
-				System.out.println(activityManager.getAllActivities());
+				activityManager.getAllActivities().forEach(System.out::println);
 				break;
 			}
 			case 3: {
@@ -458,21 +457,31 @@ public class CasottoApplication {
 			return;
 		}
 		List<Product> productsInOrder = new LinkedList<>();
-		int n;
 		boolean loop =true;
-		for (n = 0; n < products.size(); n++) {
-			System.out.println(n +") " + products.get(n).getName());
-		}
+			/*System.out.println(n +") " + products.get(n).getName());*/
+		products.forEach(product -> {
+			if (product.getQuantity() <= 0) {
+				System.out.println(product.getId() - 1 + ") " + product.getName() + " - ESAURITO");
+			} else {
+				System.out.println(product.getId() - 1 + ") " + product.getName() + " " + product.getQuantity());
+			}
+		});
 		while(loop){
 			System.out.println("\n Seleziona il prodotto che vuoi acquistare: ");
 			int scelta = scanner.nextInt();
+/*
 			System.out.println("scelta: " + scelta + " su "+ barController.getProducts().size());
+*/
 			while(scelta<0 || scelta>=barController.getProducts().size()){
 				System.out.println("Numero del prodotto non valido... \n Inseriscine un'altro: ");
 				scelta = scanner.nextInt();
 			}
-			productsInOrder.add(products.get(scelta));
-			System.out.println(products.get(scelta).getName() + " è stato aggiunto al carrello.");
+			if (products.get(scelta).getQuantity() <= 0) {
+				System.out.println("Non è possibile aggiungere questo prodotto, è finito");
+			} else {
+				productsInOrder.add(products.get(scelta));
+				System.out.println(products.get(scelta).getName() + " è stato aggiunto al carrello.");
+			}
 			System.out.println("Vuoi aggiungere altri prodotti? (Y/n)");
 			if(!scanner.next().equalsIgnoreCase("y")){
 				loop=false;
@@ -592,14 +601,14 @@ public class CasottoApplication {
 	 */
 	public void ssdVisualizzaPostazioniStruttura() {
 		System.out.println("Le postazioni presenti nella struttura sono: ");
-		System.out.println(this.locationManager.getAllLocations());
+		this.locationManager.getAllLocations().forEach(System.out::println);
 	}
 
 	/**
 	 * This method contains the behavior of the Visualizza Attività in Programma usa case
 	 */
 	public void ssdVisualizzaAttivitaInProgramma() {
-		System.out.println(this.activityManager.getAllActivities());
+		this.activityManager.getAllActivities().forEach(System.out::println);
 	}
 
 	/**
@@ -613,8 +622,8 @@ public class CasottoApplication {
 			System.out.println("Postazione numero: " + i++ + ") " + l.getId());
 		}
 		Scanner in = new Scanner(System.in);
-		int locNumber = in.nextInt() - 1;
-		Location locToModify = this.locationManager.getAllLocations().get(locNumber);
+		Long locNumber = in.nextLong() - 1;
+		Location locToModify = this.locationManager.getAllLocations().get(locNumber.intValue());
 		//eliciting for the new factors
 		System.out.println("The actual price factor of the chairs in this location is " + locToModify.getBeachChairs().get(0).getPrice());
 		System.out.println("Insert the new factor for chairs: ");
@@ -623,12 +632,8 @@ public class CasottoApplication {
 		System.out.println("Insert the new factor for umbrellas: ");
 		double newUmbrellasFactor = in.nextDouble();
 		//effecting the changes
-		for (BeachChair c : locToModify.getBeachChairs()) {
-			c.setPrice(newChairFactor);
-		}
-		for(Umbrella u : locToModify.getUmbrellas()){
-			u.setPrice(newUmbrellasFactor);
-		}
+		this.locationManager.modifyPriceLocationBeachChairById(locNumber + 1, newChairFactor);
+		this.locationManager.modifyPriceLocationUmbrellaById(locNumber + 1, newUmbrellasFactor);
 		System.out.println("Modifica avvenuta con successo");
 	}
 
@@ -644,7 +649,7 @@ public class CasottoApplication {
 		//effects the changes
 		if(newType == null) { newType = beach.getSandType(); }
 		if(newDes == null) { newDes = beach.getDescription(); }
-		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes); //TODO il metodo updateModifyBeach dà errore
+		this.beachManager.updateModifyBeach(beach.getId(), newType, newDes);
 		System.out.println("Le modifiche sono state effettuate con successo");
 	}
 

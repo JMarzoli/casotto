@@ -175,19 +175,19 @@
     </user>
     <sequence id="165" parent="163" name="ACTIVITY_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(4)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="166" parent="163" name="BEACH_CHAIR_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(5)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="167" parent="163" name="BEACH_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(2)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="168" parent="163" name="CUSTOMER_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(2)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="169" parent="163" name="DISCOUNT_ID">
       <DasType>BIGINT|0s</DasType>
@@ -195,19 +195,19 @@
     </sequence>
     <sequence id="170" parent="163" name="EQUIPMENT_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(3)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="171" parent="163" name="LOCATION_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(5)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="172" parent="163" name="ORDER_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(2)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="173" parent="163" name="PRODUCT_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(5)..9223372036854775807</SequenceIdentity>
     </sequence>
     <sequence id="174" parent="163" name="RESERVATION_ID">
       <DasType>BIGINT|0s</DasType>
@@ -219,7 +219,7 @@
     </sequence>
     <sequence id="176" parent="163" name="UMBRELLA_ID">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1)..9223372036854775807</SequenceIdentity>
+      <SequenceIdentity>1(5)..9223372036854775807</SequenceIdentity>
     </sequence>
     <table id="177" parent="163" name="ACTIVITIES_CUSTOMERS"/>
     <table id="178" parent="163" name="ACTIVITY"/>
@@ -461,338 +461,342 @@
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="243" parent="184" name="PRIMARY_KEY_9F">
+    <column id="243" parent="184" name="QR_CODE">
+      <DasType>CHARACTER VARYING(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <index id="244" parent="184" name="PRIMARY_KEY_9F">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="244" parent="184" name="CONSTRAINT_9F">
+    <key id="245" parent="184" name="CONSTRAINT_9F">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="245" parent="185" name="LOCATION_ID">
+    <column id="246" parent="185" name="LOCATION_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="246" parent="185" name="BEACH_CHAIRS_ID">
+    <column id="247" parent="185" name="BEACH_CHAIRS_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="247" parent="185" name="FKH1TOYKDOVLHVQHK92NER7DQYB">
+    <foreign-key id="248" parent="185" name="FKH1TOYKDOVLHVQHK92NER7DQYB">
       <ColNames>LOCATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9F</RefKeyName>
       <RefTableName>LOCATION</RefTableName>
     </foreign-key>
-    <foreign-key id="248" parent="185" name="FKNYNI81XEH8RNNFXSK6DLFYL91">
+    <foreign-key id="249" parent="185" name="FKNYNI81XEH8RNNFXSK6DLFYL91">
       <ColNames>BEACH_CHAIRS_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9</RefKeyName>
       <RefTableName>BEACH_CHAIR</RefTableName>
     </foreign-key>
-    <index id="249" parent="185" name="UK_MHP9JJY3CQDLF5WWL138B3944_INDEX_F">
+    <index id="250" parent="185" name="UK_MHP9JJY3CQDLF5WWL138B3944_INDEX_F">
       <ColNames>BEACH_CHAIRS_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="250" parent="185" name="FKH1TOYKDOVLHVQHK92NER7DQYB_INDEX_F">
+    <index id="251" parent="185" name="FKH1TOYKDOVLHVQHK92NER7DQYB_INDEX_F">
       <ColNames>LOCATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="251" parent="185" name="UK_MHP9JJY3CQDLF5WWL138B3944">
+    <key id="252" parent="185" name="UK_MHP9JJY3CQDLF5WWL138B3944">
       <ColNames>BEACH_CHAIRS_ID</ColNames>
     </key>
-    <column id="252" parent="186" name="LOCATION_ID">
+    <column id="253" parent="186" name="LOCATION_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="253" parent="186" name="UMBRELLAS_ID">
+    <column id="254" parent="186" name="UMBRELLAS_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="254" parent="186" name="FK37CPHP96O3A92TKS4YSIXUPKI">
+    <foreign-key id="255" parent="186" name="FK37CPHP96O3A92TKS4YSIXUPKI">
       <ColNames>LOCATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9F</RefKeyName>
       <RefTableName>LOCATION</RefTableName>
     </foreign-key>
-    <foreign-key id="255" parent="186" name="FK2U58TVCU64PCD5N2LX8SDTKR">
+    <foreign-key id="256" parent="186" name="FK2U58TVCU64PCD5N2LX8SDTKR">
       <ColNames>UMBRELLAS_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_D</RefKeyName>
       <RefTableName>UMBRELLA</RefTableName>
     </foreign-key>
-    <index id="256" parent="186" name="UK_703WLF6UN6SY4QD1W31NS07DL_INDEX_4">
+    <index id="257" parent="186" name="UK_703WLF6UN6SY4QD1W31NS07DL_INDEX_4">
       <ColNames>UMBRELLAS_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="257" parent="186" name="FK37CPHP96O3A92TKS4YSIXUPKI_INDEX_4">
+    <index id="258" parent="186" name="FK37CPHP96O3A92TKS4YSIXUPKI_INDEX_4">
       <ColNames>LOCATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="258" parent="186" name="UK_703WLF6UN6SY4QD1W31NS07DL">
+    <key id="259" parent="186" name="UK_703WLF6UN6SY4QD1W31NS07DL">
       <ColNames>UMBRELLAS_ID</ColNames>
     </key>
-    <column id="259" parent="187" name="ID">
+    <column id="260" parent="187" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="260" parent="187" name="HAS_BEEN_COMPLETED">
+    <column id="261" parent="187" name="HAS_BEEN_COMPLETED">
       <DasType>BOOLEAN|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="261" parent="187" name="PRICE">
+    <column id="262" parent="187" name="PRICE">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <Position>3</Position>
     </column>
-    <index id="262" parent="187" name="PRIMARY_KEY_8">
+    <index id="263" parent="187" name="PRIMARY_KEY_8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="263" parent="187" name="CONSTRAINT_8">
+    <key id="264" parent="187" name="CONSTRAINT_8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="264" parent="188" name="ORDER_ID">
+    <column id="265" parent="188" name="ORDER_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="265" parent="188" name="PRODUCT_ID">
+    <column id="266" parent="188" name="PRODUCT_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="266" parent="188" name="FKE4Y1SSEIO787E4O5HRML7OMT5">
+    <foreign-key id="267" parent="188" name="FKE4Y1SSEIO787E4O5HRML7OMT5">
       <ColNames>ORDER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_8</RefKeyName>
       <RefTableName>ORDERS</RefTableName>
     </foreign-key>
-    <foreign-key id="267" parent="188" name="FK974RL0YJNONMCSYJUGYA87SSV">
+    <foreign-key id="268" parent="188" name="FK974RL0YJNONMCSYJUGYA87SSV">
       <ColNames>PRODUCT_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_1</RefKeyName>
       <RefTableName>PRODUCT</RefTableName>
     </foreign-key>
-    <index id="268" parent="188" name="FKE4Y1SSEIO787E4O5HRML7OMT5_INDEX_5">
+    <index id="269" parent="188" name="FKE4Y1SSEIO787E4O5HRML7OMT5_INDEX_5">
       <ColNames>ORDER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="269" parent="188" name="FK974RL0YJNONMCSYJUGYA87SSV_INDEX_5">
+    <index id="270" parent="188" name="FK974RL0YJNONMCSYJUGYA87SSV_INDEX_5">
       <ColNames>PRODUCT_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <column id="270" parent="189" name="ID">
+    <column id="271" parent="189" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="271" parent="189" name="DESCRIPTION">
+    <column id="272" parent="189" name="DESCRIPTION">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="272" parent="189" name="NAME">
+    <column id="273" parent="189" name="NAME">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="273" parent="189" name="PRICE">
+    <column id="274" parent="189" name="PRICE">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="274" parent="189" name="QUANTITY">
+    <column id="275" parent="189" name="QUANTITY">
       <DasType>INTEGER|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="275" parent="189" name="PRIMARY_KEY_1">
+    <index id="276" parent="189" name="PRIMARY_KEY_1">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="276" parent="189" name="CONSTRAINT_1">
+    <key id="277" parent="189" name="CONSTRAINT_1">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="277" parent="190" name="ID">
+    <column id="278" parent="190" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="278" parent="190" name="BOOKING_DATE">
+    <column id="279" parent="190" name="BOOKING_DATE">
       <DasType>DATE|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="279" parent="190" name="RESERVATION_BEGIN_DATE">
+    <column id="280" parent="190" name="RESERVATION_BEGIN_DATE">
       <DasType>DATE|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="280" parent="190" name="RESERVATION_END_DATE">
+    <column id="281" parent="190" name="RESERVATION_END_DATE">
       <DasType>DATE|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="281" parent="190" name="RESERVATION_PRICE">
+    <column id="282" parent="190" name="RESERVATION_PRICE">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="282" parent="190" name="PRIMARY_KEY_2">
+    <index id="283" parent="190" name="PRIMARY_KEY_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="283" parent="190" name="CONSTRAINT_2">
+    <key id="284" parent="190" name="CONSTRAINT_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="284" parent="191" name="CUSTOMER_ID">
+    <column id="285" parent="191" name="CUSTOMER_ID">
       <DasType>BIGINT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="285" parent="191" name="RESERVATION_ID">
+    <column id="286" parent="191" name="RESERVATION_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="286" parent="191" name="FK8VCTFMJOO28JERABBTG1RFCMB">
+    <foreign-key id="287" parent="191" name="FK8VCTFMJOO28JERABBTG1RFCMB">
       <ColNames>CUSTOMER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_5</RefKeyName>
       <RefTableName>CUSTOMER</RefTableName>
     </foreign-key>
-    <foreign-key id="287" parent="191" name="FK4YMGHIIVGVMCU03CNT8WWDCEX">
+    <foreign-key id="288" parent="191" name="FK4YMGHIIVGVMCU03CNT8WWDCEX">
       <ColNames>RESERVATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_2</RefKeyName>
       <RefTableName>RESERVATION</RefTableName>
     </foreign-key>
-    <index id="288" parent="191" name="PRIMARY_KEY_F">
+    <index id="289" parent="191" name="PRIMARY_KEY_F">
       <ColNames>RESERVATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="289" parent="191" name="FK8VCTFMJOO28JERABBTG1RFCMB_INDEX_F">
+    <index id="290" parent="191" name="FK8VCTFMJOO28JERABBTG1RFCMB_INDEX_F">
       <ColNames>CUSTOMER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="290" parent="191" name="CONSTRAINT_F">
+    <key id="291" parent="191" name="CONSTRAINT_F">
       <ColNames>RESERVATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="291" parent="192" name="LOCATION_ID">
+    <column id="292" parent="192" name="LOCATION_ID">
       <DasType>BIGINT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="292" parent="192" name="RESERVATION_ID">
+    <column id="293" parent="192" name="RESERVATION_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="293" parent="192" name="FK853N7EHHF2PUN0AN9TW2XDEI6">
+    <foreign-key id="294" parent="192" name="FK853N7EHHF2PUN0AN9TW2XDEI6">
       <ColNames>LOCATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9F</RefKeyName>
       <RefTableName>LOCATION</RefTableName>
     </foreign-key>
-    <foreign-key id="294" parent="192" name="FK1UEHIRB7KKK3DE1HMY1T760PS">
+    <foreign-key id="295" parent="192" name="FK1UEHIRB7KKK3DE1HMY1T760PS">
       <ColNames>RESERVATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_2</RefKeyName>
       <RefTableName>RESERVATION</RefTableName>
     </foreign-key>
-    <index id="295" parent="192" name="PRIMARY_KEY_4">
+    <index id="296" parent="192" name="PRIMARY_KEY_4">
       <ColNames>RESERVATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="296" parent="192" name="FK853N7EHHF2PUN0AN9TW2XDEI6_INDEX_4">
+    <index id="297" parent="192" name="FK853N7EHHF2PUN0AN9TW2XDEI6_INDEX_4">
       <ColNames>LOCATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="297" parent="192" name="CONSTRAINT_4">
+    <key id="298" parent="192" name="CONSTRAINT_4">
       <ColNames>RESERVATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="298" parent="193" name="ID">
+    <column id="299" parent="193" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="299" parent="193" name="COST_FACTOR">
+    <column id="300" parent="193" name="COST_FACTOR">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="300" parent="193" name="PRIMARY_KEY_91">
+    <index id="301" parent="193" name="PRIMARY_KEY_91">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="301" parent="193" name="CONSTRAINT_91">
+    <key id="302" parent="193" name="CONSTRAINT_91">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="302" parent="194" name="ID">
+    <column id="303" parent="194" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="303" parent="194" name="DIAMETER">
+    <column id="304" parent="194" name="DIAMETER">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="304" parent="194" name="MATERIAL">
+    <column id="305" parent="194" name="MATERIAL">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="305" parent="194" name="PRICE">
+    <column id="306" parent="194" name="PRICE">
       <DasType>DOUBLE PRECISION|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="306" parent="194" name="LOCATION_ID">
+    <column id="307" parent="194" name="LOCATION_ID">
       <DasType>BIGINT|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="307" parent="194" name="FKKOL0SIJHA3QMTPRWPKRDM4MTN">
+    <foreign-key id="308" parent="194" name="FKKOL0SIJHA3QMTPRWPKRDM4MTN">
       <ColNames>LOCATION_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9F</RefKeyName>
       <RefTableName>LOCATION</RefTableName>
     </foreign-key>
-    <index id="308" parent="194" name="PRIMARY_KEY_D">
+    <index id="309" parent="194" name="PRIMARY_KEY_D">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="309" parent="194" name="FKKOL0SIJHA3QMTPRWPKRDM4MTN_INDEX_D">
+    <index id="310" parent="194" name="FKKOL0SIJHA3QMTPRWPKRDM4MTN_INDEX_D">
       <ColNames>LOCATION_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="310" parent="194" name="CONSTRAINT_D">
+    <key id="311" parent="194" name="CONSTRAINT_D">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

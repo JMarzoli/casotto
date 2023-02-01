@@ -41,13 +41,10 @@ public class BarController {
      * @return a List of order with the boolean parameters set on false
      */
     public List<Order> getNonCompletedOrder() {
-        List<Order> orders = this.getAllOrders();
-        for(Order o : orders) {
-            if(o.isHasBeenCompleted()) {
-                orders.remove(o);
-            }
-        }
-        return orders;
+        List<Order> orderList = this.getAllOrders();
+        List<Order> nonCompletedOrders = orderList.stream().filter(Order::isHasBeenCompleted).toList();
+        orderList.removeAll(nonCompletedOrders);
+        return orderList;
     }
 
     public void createNewOrder(List<Product> products) {
@@ -55,7 +52,13 @@ public class BarController {
         order.setProducts(products);
         double price = 0;
         for (Product product : products) {
-            price += product.getPrice();
+            if (product.getQuantity() <= 0) {
+                System.out.println("Il prodotto " + product.getName() + " non è più disponibile");
+            } else {
+                price += product.getPrice();
+                product.setQuantity(product.getQuantity() - 1);
+                this.productRepository.save(product);
+            }
         }
         order.setPrice(price);
         this.orderRepository.save(order);
@@ -65,7 +68,6 @@ public class BarController {
         Order order = this.orderRepository.findById(orderId).orElse(null);
         assert order != null;
         order.setHasBeenCompleted(true);
-        System.out.println("asdasd:   "+order);
         this.orderRepository.save(order);
     }
 

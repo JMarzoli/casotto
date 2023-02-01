@@ -1,7 +1,9 @@
 package it.unicam.cs.ids.casotto.controller;
 
 import it.unicam.cs.ids.casotto.model.*;
+import it.unicam.cs.ids.casotto.repository.BeachChairRepository;
 import it.unicam.cs.ids.casotto.repository.LocationRepository;
+import it.unicam.cs.ids.casotto.repository.UmbrellaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +14,15 @@ import java.util.Optional;
 public class LocationManager {
     private final LocationRepository locationRepository;
 
-    @Autowired
-    public LocationManager(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
+    private final UmbrellaRepository umbrellaRepository;
 
-    public Location createLocation(String desc) {
-        return locationRepository.save(new Location(desc));
+    private final BeachChairRepository beachChairRepository;
+
+    @Autowired
+    public LocationManager(LocationRepository locationRepository, UmbrellaRepository umbrellaRepository, BeachChairRepository beachChairRepository) {
+        this.locationRepository = locationRepository;
+        this.umbrellaRepository = umbrellaRepository;
+        this.beachChairRepository = beachChairRepository;
     }
 
     public void addUmbrellaToLocation(Long locationId, Umbrella umbrella) {
@@ -43,7 +47,7 @@ public class LocationManager {
 
     public double getTotalPrice(Long locationId) {
         Optional<Location> loc = locationRepository.findById(locationId);
-        double totalCost = 100;
+        double totalCost = 0;
         if(loc.isPresent()) {
             for (Umbrella u : loc.get().getUmbrellas()) {
                 totalCost += u.getPrice();
@@ -57,11 +61,23 @@ public class LocationManager {
 
     public void modifyPriceLocationUmbrellaById(Long locationId, double newPrice) {
         Optional<Location> loc = locationRepository.findById(locationId);
-        loc.ifPresent(location -> location.getUmbrellas().forEach(umbrella -> umbrella.setPrice(newPrice)));
+        if (loc.isPresent()) {
+            Location location = loc.get();
+            location.getUmbrellas().forEach(umbrella -> {
+                umbrella.setPrice(newPrice);
+                umbrellaRepository.save(umbrella);
+            });
+        }
     }
     public void modifyPriceLocationBeachChairById(Long locationId, double newPrice) {
         Optional<Location> loc = locationRepository.findById(locationId);
-        loc.ifPresent(location -> location.getBeachChairs().forEach(beachChair -> beachChair.setPrice(newPrice)));
+        if (loc.isPresent()) {
+            Location location = loc.get();
+            location.getBeachChairs().forEach(beachChair -> {
+                beachChair.setPrice(newPrice);
+                beachChairRepository.save(beachChair);
+            });
+        }
     }
 
     public Location findByQrCode(String qrcode) {
@@ -69,6 +85,15 @@ public class LocationManager {
     }
 
     public void saveLocation(String desc,List<Umbrella> umbrellas, List<BeachChair> beachSeats, String qrCode) {
-        this.locationRepository.save(new Location(desc,umbrellas, beachSeats, qrCode));
+        Location location = new Location();
+        location.setDesc(desc);
+        location.setQrCode(qrCode);
+        location.setBeachChairs(beachSeats);
+        location.setUmbrellas(umbrellas);
+        umbrellas.forEach(umbrella -> umbrella.setLocation(location));
+        beachSeats.forEach(beachChair -> beachChair.setLocation(location));
+        this.locationRepository.save(location);
+        umbrellas.forEach(umbrella -> umbrellaRepository.save(umbrella));
+        beachSeats.forEach(beachChair -> beachChairRepository.save(beachChair));
     }
 }
